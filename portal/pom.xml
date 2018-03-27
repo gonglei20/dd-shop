@@ -19,6 +19,12 @@
         <module>portal-service</module>
         <module>pportal-web</module>
     </modules>
-
+<dependencies>
+    <dependency>
+        <groupId>com.qf</groupId>
+        <artifactId>commons</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+</dependencies>
 
 </project>
