@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -13,10 +14,11 @@
     <title>服装 - jeegou开发站- Powered by JSPGOU</title>
     <meta http-equiv="keywords" content="JSPGOU演示站"/>
     <meta http-equiv="description" content="JSPGOU演示站"/>
-    <link href="css/index_8.css" type="text/css" rel="stylesheet" />
-    <link href="css/list.css" type="text/css" rel="stylesheet" />
-    <script src="js/jquery1.42.min_2.js" type="text/javascript"></script>
+    <link href="${pageContext.request.contextPath}/css/index_8.css" type="text/css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/css/list.css" type="text/css" rel="stylesheet" />
+    <script src="${pageContext.request.contextPath}/js/jquery1.42.min_2.js" type="text/javascript"></script>
     <script>
+
         $(function(){
             $('#nav_category').mouseenter(function(){
                 $(this).addClass('active');
@@ -296,12 +298,15 @@
         <div id="JS_category_filter" class="filter">
 
             <dl class="cat clearfix">
-                <dt><a href="">服装</a></dt>
+                <dt><a href="">${oneCategory.pname}</a></dt>
                 <dd>
                     <table>
                         <tr>
                             <td height="21" id="JS_filter_cats">
                                 <!-- 这里可以从数据库回显出分类信息-->
+                                <c:forEach items="${findCategory }" var="cat">
+                                <a href="#"><strong>${cat.cname}</strong></a>
+                                </c:forEach>
                             </td>
                         </tr>
                     </table>
@@ -340,25 +345,27 @@
     <div id="JS_list_panel" class="list-panel">
         <div class="list-wrap">
             <ul class="list-goods clearfix" style="width:1220px;">
+                <c:forEach items="${findBook }" var="bok">
                 <li class="g-item">
                     <div class="g-dtl">
                         <a href="/woman/37.htm" target="_blank"  >
-                            <img  class="d-img" src="picture/20084652fznp.jpg" />
+                            <img  class="d-img" src="${bok.image_fm}" />
                         </a>
                         <div class="d-price clearfix">
                             <strong class="fl p-money"><sub class="m-mark">￥</sub>
-                                <span class="m-count JS_async_price">100            </span></strong>
-                            <del class="fl p-del" style="margin-right: 0px;">
+                                <span class="m-count JS_async_price">${bok.price}</span></strong>
+                          <%-- <del class="fl p-del" style="margin-right: 0px;">
                                 <sub class="d-mark">￥</sub><del>
                                 100
                             </del>
-                            </del>
+                            </del>--%>
                         </div>
                         <a href="" target="_blank" title="" class="d-name">
-                            <span>牛仔裤</span>
+                            <span>${bok.bname}</span>
                         </a>
                     </div>
                 </li>
+                </c:forEach>
             </ul>
         </div>
     </div>

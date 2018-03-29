@@ -11,8 +11,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>	首页 - jeegou开发站- Powered by JSPGOU</title>
-    <meta http-equiv="keywords" content="JSPGOU演示站"/>
-    <meta http-equiv="description" content="JSPGOU演示站"/>
+    <meta http-equiv="keywords" content="叮当网上书城"/>
+    <meta http-equiv="description" content="叮当网上书城"/>
     <link href="${pageContext.request.contextPath}/css/index_2.css" type="text/css" rel="stylesheet" />
     <script src="${pageContext.request.contextPath}/js/jquery1.42.min_1.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.superslide.2.1.1_1.js" type="text/javascript"></script>
@@ -20,6 +20,24 @@
 </head>
 <body style="background:#f5f5f5;">
 <script type="text/javascript">
+
+   /* function fn3(obj){
+        $.ajax({
+            url:"${pageContext.request.contextPath}/computer?cid="+obj,
+            async:true,
+            type:"GET",
+            //data:{"name":"lucy","age":18},
+            success:function(data){
+
+                alert(data);
+            },
+            error:function(){
+                alert("请求失败");
+            },
+            dataType:"json"
+        });
+    }*/
+
     HS_OnlineService = {
         options: { "Top": "40", "Accounts":
             [
@@ -81,14 +99,9 @@
             </li>
         </ul>
         <ul class="Topbar-welcome fl" id="top_user_bar">
-            <li class="Topbar-welcome-item">Hi,<font color="red">  test1  </font>欢迎
-
-                来到JSPGOU商城</li>
+            <li class="Topbar-welcome-item">Hi,<font color="red">  test1  </font>欢迎来到JSPGOU商城</li>
             <li class="Topbar-welcome-item"><a href="/logout.jspx?username=test1">退出登录</a></li>
         </ul>
-
-
-
     </div>
 </div>
 
@@ -156,17 +169,17 @@
         <!--导航栏 begin -->
         <li class="Nav-item fl first active"><a href="/" >首页</a></li>
         <input type="hidden" id="hidden1" value="6"></input>
-        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/computer?cid=1"  id="nav1">计算机类</a></li>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/computer?pid=1"   id="nav1">计算机类</a></li>
         <input type="hidden" id="hidden2" value="6"></input>
-        <li class="Nav-item fl"> <a href="/fuzhuang/index.htm"  id="nav2">小说类</a></li>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/computer?pid=1"  id="nav2">小说类</a></li>
         <input type="hidden" id="hidden3" value="6"></input>
-        <li class="Nav-item fl"> <a href="/xiebao/index.htm"  id="nav3">生活类</a></li>
-        <input type="hidden" id="hidden4" value="6"></input>
-        <li class="Nav-item fl"> <a href="/riyongbaihuo/index.htm"  id="nav4">日用百货</a></li>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/computer?pid=1"  id="nav3">生活类</a></li>
+      <%--  <input type="hidden" id="hidden4" value="6"></input>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/computer?pid=1"  id="nav4">日用百货</a></li>
         <input type="hidden" id="hidden5" value="6"></input>
         <li class="Nav-item fl"> <a href="/jiajujiancai/index.htm"  id="nav5">家居建材</a></li>
         <input type="hidden" id="hidden6" value="6"></input>
-        <li class="Nav-item fl"> <a href="/zhubaoshoubiao/index.htm"  id="nav6">珠宝手表</a></li>
+        <li class="Nav-item fl"> <a href="/zhubaoshoubiao/index.htm"  id="nav6">珠宝手表</a></li>--%>
 
         <!--导航栏 end -->
     </ul>

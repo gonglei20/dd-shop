@@ -20,6 +20,15 @@ public class Book {
     private Date upTimedate;
     private Integer status;
     private String publish;
+    private Integer pid;
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
 
     public Integer getBid() {
         return bid;
@@ -155,5 +164,13 @@ public class Book {
 
     public void setPublish(String publish) {
         this.publish = publish;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bid=" + bid +
+                ", bname='" + bname + '\'' +
+                '}';
     }
 }
