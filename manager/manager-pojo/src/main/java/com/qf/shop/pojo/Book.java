@@ -1,4 +1,4 @@
-package com.qf.shop.portal.pojo;
+package com.qf.shop.pojo;
 
 import java.util.Date;
 

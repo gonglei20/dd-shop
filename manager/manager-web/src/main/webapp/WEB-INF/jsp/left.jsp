@@ -30,7 +30,7 @@
         <li><a><img src="${pageContext.request.contextPath}/images/menuPic/layout.png" alt="">工作台</a></li>
         <li><a><img src="${pageContext.request.contextPath}/images/menuPic/product.png" alt="">商品</a>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/admin/pages/product/productList" target="right">商品管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/productList" target="right">商品管理</a></li>
                 <li><a href="product/car.html" target="right">发布商品</a></li>
                 <li><a href="product/accessory.html" target="right">分类管理</a></li>
             </ul>

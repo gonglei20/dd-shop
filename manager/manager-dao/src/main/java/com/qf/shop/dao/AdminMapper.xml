@@ -4,5 +4,14 @@
     <select id="findAdmin" resultType="com.qf.shop.pojo.TbAdmin" parameterType="com.qf.shop.pojo.TbAdmin">
         SELECT * FROM t_admin WHERE adminName=#{adminName} AND adminPWD=#{adminPWD}
     </select>
+    <!--查找所有商品-->
+    <select id="findAllBook" resultType="com.qf.shop.pojo.Book" >
+        SELECT * FROM t_book order by cid;
+    </select>
+
+    <!--通过bid查找商品-->
+    <select id="findBookByBid" resultType="com.qf.shop.pojo.Book" parameterType="String" >
+        SELECT * FROM t_book WHERE bid=#{bid};
+    </select>
 
 </mapper>
