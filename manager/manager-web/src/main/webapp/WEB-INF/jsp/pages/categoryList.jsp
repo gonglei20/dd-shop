@@ -27,7 +27,7 @@
 
 <!--     内容      -->
 <div id="content" class="white">
-    <h1><img src="${pageContext.request.contextPath}/images/posts.png" alt="">商品管理</h1>
+    <h1><img src="${pageContext.request.contextPath}/images/posts.png" alt="">分类管理</h1>
 
     <!--操作栏-->
     <div class="bloc">
@@ -35,7 +35,7 @@
         <div class="content dashboard">
             <div class="center" style="display: block; width: auto;">
                 <a href="${pageContext.request.contextPath}/editProduct" class="shortcut zoombox w500 h300">
-                    <img src="${pageContext.request.contextPath}/images/glyph-add.png" alt="" width="48" height="48"> 添加商品 </a>
+                    <img src="${pageContext.request.contextPath}/images/glyph-add.png" alt="" width="48" height="48"> 添加分类 </a>
                 <div class="cb"></div>
             </div>
         </div>
@@ -43,35 +43,31 @@
 
 
     <div class="bloc">
-        <div class="title"> 商品列表 <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#" class="toggle"></a></div>
+        <div class="title"> 分类列表 <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#" class="toggle"></a></div>
         <div class="content">
             <table>
                 <thead>
                 <tr>
-                    <th>图片</th>
-                    <th>商品名称</th>
-                    <th>分类</th>
-                    <th>价格</th>
-                    <th>库存</th>
+                    <th>id</th>
+                    <th>二级分类名称</th>
+                    <th>一级分类名称</th>
                     <th>操作</th>
                 </tr>
                 </thead>
-                <c:forEach items="${allBook}" var="all">
-                <tbody>
-                <tr>
-                    <td><img src="${all.image_fm}" style="width: 56px;height: 56px;" /></td>
-                    <td>${all.bname}</td>
-                    <td>${all.cname}</td>
-                    <td>${all.price}</td>
-                    <td>${all.stock}</td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/editProduct?bid=${all.bid}" title="修改" class=" zoombox w500 h300">
-                            <img src="${pageContext.request.contextPath}/images/edit.png" alt=""></a>
-                        <a href="javascript:void(0)" onclick="deletePro('${all.bid}')" title="删除">
-                            <img src="${pageContext.request.contextPath}/images/delete.png" alt=""></a>
-                    </td>
-                </tr>
-                </tbody>
+                <c:forEach items="${categoryList}" var="categoryList">
+                    <tbody>
+                    <tr>
+                        <td>${categoryList.cid}</td>
+                        <td>${categoryList.cname}</td>
+                        <td>${categoryList.pname}</td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/editCategory?id=${categoryList.cid}" title="修改" class=" zoombox w500 h300">
+                                <img src="${pageContext.request.contextPath}/images/edit.png" alt=""></a>
+                            <a href="javascript:void(0)" onclick="deletePro('${all.bid}')" title="删除">
+                                <img src="${pageContext.request.contextPath}/images/delete.png" alt=""></a>
+                        </td>
+                    </tr>
+                    </tbody>
                 </c:forEach>
             </table>
             <div class="pagination"> <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#" class="prev">«</a> <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#">1</a> <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#" class="current">2</a> ... <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#">21</a> <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#">22</a> <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#" class="next">»</a> </div>
@@ -84,10 +80,10 @@
 </div>
 <script>
     function deletePro(bid) {
-       var reslut = confirm("确认删除？");
-       if(reslut==true){
-          location.href="${pageContext.request.contextPath}/deleteProduct?bid="+bid;
-       }
+        var reslut = confirm("确认删除？");
+        if(reslut==true){
+            location.href="${pageContext.request.contextPath}/deleteProduct?bid="+bid;
+        }
     }
 </script>
 </body>

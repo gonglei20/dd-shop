@@ -29,35 +29,27 @@
 
 <!--     内容      -->
 <form>
-<div id="content" class="white">
-    <div class="bloc">
-        <div class="title">修改商品信息<a class="toggle"></a></div>
-        <div class="content" style="height:390px;">
-            <div class="input">
-                <label>商品名称</label>
-                <input type="text" id="bname" value="${findBookByBid.bname}">
-                <label>作者</label>
-                <input type="text" id="author" value="${findBookByBid.author}">
-                <label>价格</label>
-                <input type="text" id="price" value="${findBookByBid.price}">
-                <label>库存</label>
-                <input type="text" id="stock" value="${findBookByBid.stock}">
-                <label>状态</label>
-                <input type="text" id="status"
-                       <c:if test="${findBookByBid.status==0}">value="上架"</c:if>
-                       <c:if test="${findBookByBid.status==1}">value="下架"</c:if>
-                       <%--<c:if test="${findBookByBid.status==0}">value="上架"</c:if>--%>
-                >
-            </div>
+    <div id="content" class="white">
+        <div class="bloc">
+            <div class="title">修改分类信息<a class="toggle"></a></div>
+            <div class="content" style="height:390px;">
+                <div class="input">
+                    <label>商品二级分类</label>
+                    <input type="text" id="cname" value="${editCategoryByCid.cname}">
+                    <label>商品一级分类</label>
+                    <select>
+                        <option>${editCategoryByCid.pname}</option>
+                    </select>
+                </div>
 
-            <div class="inpput"></div>
-            <div class="submit">
-                <input type="submit" value="确定">
+                <div class="inpput"></div>
+                <div class="submit">
+                    <input type="submit" value="确定">
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 </form>
 <br>
 

@@ -1,17 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qf.shop.dao.AdminMapper" >
+
     <select id="findAdmin" resultType="com.qf.shop.pojo.TbAdmin" parameterType="com.qf.shop.pojo.TbAdmin">
         SELECT * FROM t_admin WHERE adminName=#{adminName} AND adminPWD=#{adminPWD}
     </select>
-    <!--查找所有商品-->
+    <!--查找所有商品
     <select id="findAllBook" resultType="com.qf.shop.pojo.Book" >
-        SELECT * FROM t_book order by cid;
+        SELECT * FROM t_book where status!=3 order by cid;
+    </select>-->
+    <!--查找所有商品-->
+    <select id="findAllBook" resultType="com.qf.shop.pojo.dto.BookDTO" >
+        SELECT b.bid,b.bname,b.image_fm,b.price,b.stock,b.author,c.cname
+        FROM t_book AS b
+        INNER JOIN  t_category AS c
+        ON b.cid = c.cid AND b.status!=3
     </select>
 
     <!--通过bid查找商品-->
     <select id="findBookByBid" resultType="com.qf.shop.pojo.Book" parameterType="String" >
         SELECT * FROM t_book WHERE bid=#{bid};
+    </select>
+
+    <!--通过bid删除单个商品(逻辑删除，进入回收站)-->
+    <update id="deleteProduct"  parameterType="String" >
+        update t_book SET status=3 where bid=#{bid};
+    </update>
+
+    <!-- 分类管理
+     查询分类
+     -->
+    <select id="findCategory" resultType="com.qf.shop.pojo.Category" >
+        SELECT * FROM t_category;
+    </select>
+    <!--通过cid修改分类信息-->
+    <select id="editCategoryByCid" resultType="com.qf.shop.pojo.Category" parameterType="Integer" >
+        SELECT * FROM t_category WHERE cid=#{cid};
+    </select>
+
+    <!--查询所有用户-->
+    <select id="findAllUser" resultType="com.qf.shop.pojo.User"  >
+        SELECT * FROM t_user;
     </select>
 
 </mapper>

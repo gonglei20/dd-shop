@@ -32,7 +32,7 @@
             <ul>
                 <li><a href="${pageContext.request.contextPath}/productList" target="right">商品管理</a></li>
                 <li><a href="product/car.html" target="right">发布商品</a></li>
-                <li><a href="product/accessory.html" target="right">分类管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/categoryList" target="right">分类管理</a></li>
             </ul>
         </li>
         <li><a><img src="${pageContext.request.contextPath}/images/menuPic/comment.png" alt="">订单</a>
@@ -45,7 +45,7 @@
 
         <li><a><img src="${pageContext.request.contextPath}/images/menuPic/brush.png" alt="">用户</a>
             <ul>
-                <li><a  href="information/promotion.html" target="right">用户管理</a></li>
+                <li><a  href="${pageContext.request.contextPath}/user" target="right">用户管理</a></li>
             </ul>
         </li>
         <li><a><img src="images/huser.png" alt=""> 客户管理</a>

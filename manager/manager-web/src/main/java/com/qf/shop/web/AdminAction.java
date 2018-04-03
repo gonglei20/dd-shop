@@ -1,11 +1,13 @@
 package com.qf.shop.web;
 
 import com.qf.shop.pojo.Book;
+import com.qf.shop.pojo.Category;
 import com.qf.shop.pojo.TbAdmin;
+import com.qf.shop.pojo.User;
+import com.qf.shop.pojo.dto.BookDTO;
 import com.qf.shop.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,7 +36,7 @@ public class AdminAction {
     //商品管理(查找所有商品)
     @RequestMapping(value = "/productList")
     public String findAll(HttpServletRequest request) {
-        List<Book> allBook = adminService.findAllBook();
+        List<BookDTO> allBook = adminService.findAllBook();
         request.setAttribute("allBook",allBook);
         return "/pages/"+"productList";
     }
@@ -45,7 +47,33 @@ public class AdminAction {
         request.setAttribute("findBookByBid",findBookByBid);
         return "/pages/"+"editProduct";
     }
-
-
+    //删除单个商品deleteProduct
+    @RequestMapping(value = "/deleteProduct")
+    public String delete(String bid,HttpServletRequest request){
+        adminService.deleteProduct(bid);
+        return "redirect:/productList";
+    }
+    //分类管理
+    @RequestMapping(value = "/categoryList")
+    public String categoryList(HttpServletRequest request){
+        List<Category> categoryList= adminService.findCategory();
+        request.setAttribute("categoryList",categoryList);
+        return "pages/"+"categoryList";
+    }
+    //根据cid修改分类信息editCategory
+    @RequestMapping(value = "/editCategory")
+    public String editCategory(String id,HttpServletRequest request){
+        int cid = Integer.parseInt(id);
+        Category editCategoryByCid= adminService.editCategoryByCid(cid);
+       request.setAttribute("editCategoryByCid",editCategoryByCid);
+        return "pages/"+"editCategory";
+    }
+    //用户管理
+    @RequestMapping(value = "/user")
+    public String user(HttpServletRequest request){
+      List<User> userList=adminService.findAllUser();
+       request.setAttribute("userList",userList);
+        return "pages/"+"userList";
+    }
 
 }

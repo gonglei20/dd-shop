@@ -27,7 +27,7 @@
 
 <!--     内容      -->
 <div id="content" class="white">
-    <h1><img src="${pageContext.request.contextPath}/images/posts.png" alt="">商品管理</h1>
+    <h1><img src="${pageContext.request.contextPath}/images/posts.png" alt="">用户管理</h1>
 
     <!--操作栏-->
     <div class="bloc">
@@ -35,37 +35,45 @@
         <div class="content dashboard">
             <div class="center" style="display: block; width: auto;">
                 <a href="${pageContext.request.contextPath}/editProduct" class="shortcut zoombox w500 h300">
-                    <img src="${pageContext.request.contextPath}/images/glyph-add.png" alt="" width="48" height="48"> 添加商品 </a>
-                <div class="cb"></div>
+                    <img src="${pageContext.request.contextPath}/images/glyph-add.png" alt="" width="48" height="48"> 添加用户 </a>
+                
+                <div class="cb">
+                </div>
             </div>
         </div>
     </div>
 
 
     <div class="bloc">
-        <div class="title"> 商品列表 <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#" class="toggle"></a></div>
+        <div class="title"> 用户列表 <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#" class="toggle"></a></div>
         <div class="content">
             <table>
                 <thead>
                 <tr>
-                    <th>图片</th>
-                    <th>商品名称</th>
-                    <th>分类</th>
-                    <th>价格</th>
-                    <th>库存</th>
+                    <th>id</th>
+                    <th>用户名</th>
+                    <th>邮箱</th>
+                    <th>状态</th>
                     <th>操作</th>
                 </tr>
                 </thead>
-                <c:forEach items="${allBook}" var="all">
+                <c:forEach items="${userList}" var="userList">
                 <tbody>
                 <tr>
-                    <td><img src="${all.image_fm}" style="width: 56px;height: 56px;" /></td>
-                    <td>${all.bname}</td>
-                    <td>${all.cname}</td>
-                    <td>${all.price}</td>
-                    <td>${all.stock}</td>
+                    <td>${userList.uid}</td>
+                    <td>${userList.username}</td>
+                    <td>${userList.email}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/editProduct?bid=${all.bid}" title="修改" class=" zoombox w500 h300">
+                        <c:if test="${userList.status==0}">
+                            正常
+                        </c:if>
+                        <c:if test="${userList.status==1}">
+                            异常
+                        </c:if>
+
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/editProduct?bid=${userList.uid}" title="修改" class=" zoombox w500 h300">
                             <img src="${pageContext.request.contextPath}/images/edit.png" alt=""></a>
                         <a href="javascript:void(0)" onclick="deletePro('${all.bid}')" title="删除">
                             <img src="${pageContext.request.contextPath}/images/delete.png" alt=""></a>
