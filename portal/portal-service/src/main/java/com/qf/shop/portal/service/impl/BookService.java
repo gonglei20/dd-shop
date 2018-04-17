@@ -28,4 +28,16 @@ public class BookService implements IBookService {
     public Category findOneCategory(Book book) {
         return bookMapper.findOneCategory(book);
     }
+
+    //查询二级类目下的图书
+    @Override
+    public List<Book> findBookByCid(Book book) {
+        return bookMapper.findBookByCid(book);
+    }
+
+    //通过Bid查询商品（用于商品详情页）
+    @Override
+    public Book findBookByBid(Book book) {
+        return bookMapper.findBookByBid(book);
+    }
 }

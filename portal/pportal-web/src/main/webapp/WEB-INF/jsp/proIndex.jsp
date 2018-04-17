@@ -191,7 +191,7 @@
 <div class="Header">
     <div class="ctr pr">
         <a href="/"><div class="Logo">
-            <img src="picture/logo_8.jpg" width="158" height="58" />
+            <img src="${pageContext.request.contextPath}/picture/logo_2.jpg" width="400" height="80" />
         </div></a>
         <form class="Search"  id="searchForm" action="/search.jspx">
             <input id="search_form_input" class="Search-input zi2" type="text"
@@ -248,47 +248,22 @@
 
 
         <!--导航栏 begin -->
-        <li class="Nav-item fl first active"><a href="/"   id="nav0" onmouseover="jte(this,0)">首页</a></li>
+        <li class="Nav-item fl first active"><a href="/" >首页</a></li>
         <input type="hidden" id="hidden1" value="6"></input>
-        <li class="Nav-item fl"> <a href="/shuma/index.htm"  id="nav1" class="white"  onmouseover="jte(this,6)">数码</a></li>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=1"   id="nav1">计算机类</a></li>
         <input type="hidden" id="hidden2" value="6"></input>
-        <li class="Nav-item fl"> <a href="/fuzhuang/index.htm"  id="nav2" class="white"  onmouseover="jte(this,6)">服装</a></li>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=2"  id="nav2">小说类</a></li>
         <input type="hidden" id="hidden3" value="6"></input>
-        <li class="Nav-item fl"> <a href="/xiebao/index.htm"  id="nav3" class="white"  onmouseover="jte(this,6)">鞋包配饰</a></li>
-        <input type="hidden" id="hidden4" value="6"></input>
-        <li class="Nav-item fl"> <a href="/riyongbaihuo/index.htm"  id="nav4" class="white"  onmouseover="jte(this,6)">日用百货</a></li>
-        <input type="hidden" id="hidden5" value="6"></input>
-        <li class="Nav-item fl"> <a href="/jiajujiancai/index.htm"  id="nav5" class="white"  onmouseover="jte(this,6)">家居建材</a></li>
-        <input type="hidden" id="hidden6" value="6"></input>
-        <li class="Nav-item fl"> <a href="/zhubaoshoubiao/index.htm"  id="nav6" class="white"  onmouseover="jte(this,6)">珠宝手表</a></li>
-
-
-        <script type="text/javascript">
-            function jte(obj,n){
-                obj.className="current";
-                var t;
-                var id;
-                var s;
-                if(n!=0){
-                    for(var i=0;i<=n;i++){
-                        id ="nav"+i;
-                        t = document.getElementById(id);
-                        if(id != obj.id){
-                            t.className="white";
-                        }
-                    }
-                }else{
-                    n=document.getElementById("hidden1").value;
-                    for(var i=0;i<=n;i++){
-                        id ="nav"+i;
-                        t = document.getElementById(id);
-                        if(id != obj.id){
-                            t.className="white";
-                        }
-                    }
-                }
-            }
-        </script>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=3"  id="nav3">生活类</a></li>
+        <input type="hidden" id="hidden1" value="6"></input>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=4"   id="nav1">教辅类</a></li>
+        <input type="hidden" id="hidden1" value="6"></input>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=5"   id="nav1">励志类</a></li>
+        <input type="hidden" id="hidden2" value="6"></input>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=6"  id="nav2">科技类</a></li>
+        <input type="hidden" id="hidden3" value="6"></input>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=7"  id="nav3">儿童类</a></li>
+        <!--导航栏 end -->
     </ul>
 </div>
 <!--商品类目栏 end  -->
@@ -305,7 +280,7 @@
                             <td height="21" id="JS_filter_cats">
                                 <!-- 这里可以从数据库回显出分类信息-->
                                 <c:forEach items="${findCategory }" var="cat">
-                                <a href="#"><strong>${cat.cname}</strong></a>
+                                <a href="${pageContext.request.contextPath}/listCat?cid=${cat.cid}"><strong>${cat.cname}</strong></a>
                                 </c:forEach>
                             </td>
                         </tr>
@@ -348,7 +323,7 @@
                 <c:forEach items="${findBook }" var="bok">
                 <li class="g-item">
                     <div class="g-dtl">
-                        <a href="/woman/37.htm" target="_blank"  >
+                        <a href="${pageContext.request.contextPath}/proInfo?bid=${bok.bid}" target="_blank"  >
                             <img  class="d-img" src="${bok.image_fm}" />
                         </a>
                         <div class="d-price clearfix">
@@ -360,7 +335,7 @@
                             </del>
                             </del>--%>
                         </div>
-                        <a href="" target="_blank" title="" class="d-name">
+                        <a href="" target="_blank"  class="d-name">
                             <span>${bok.bname}</span>
                         </a>
                     </div>

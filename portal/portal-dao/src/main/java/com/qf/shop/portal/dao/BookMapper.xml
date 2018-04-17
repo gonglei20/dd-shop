@@ -13,4 +13,15 @@
     <select id="findOneCategory" parameterType="com.qf.shop.portal.pojo.Book" resultType="com.qf.shop.portal.pojo.Category">
         SELECT DISTINCT(cat.pname) FROM t_category cat WHERE pid=#{pid}
     </select>
+
+    <!--查询二级类目下的图书-->
+    <select id="findBookByCid" parameterType="com.qf.shop.portal.pojo.Book" resultType="com.qf.shop.portal.pojo.Book">
+        SELECT * FROM t_book  WHERE cid=#{cid}
+    </select>
+
+    <!--通过Bid查询商品（用于商品详情页）-->
+    <!--查询二级类目下的图书-->
+    <select id="findBookByBid" parameterType="com.qf.shop.portal.pojo.Book" resultType="com.qf.shop.portal.pojo.Book">
+        SELECT * FROM t_book  WHERE bid=#{bid}
+    </select>
 </mapper>

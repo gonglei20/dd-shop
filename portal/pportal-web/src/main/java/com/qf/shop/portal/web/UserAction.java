@@ -27,10 +27,12 @@ public class UserAction {
         User findUser = userService.findUserByNameAndPass(user);
         if(findUser!=null){
             System.out.println("succ");
+            return "index";
         }else{
             System.out.println("fail");
+            return "login";
         }
-        return "index";
+
     }
     //用户注册
     @RequestMapping(value = "/toRegister")

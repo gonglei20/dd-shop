@@ -99,7 +99,7 @@
             </li>
         </ul>
         <ul class="Topbar-welcome fl" id="top_user_bar">
-            <li class="Topbar-welcome-item">Hi,<font color="red">  test1  </font>欢迎来到JSPGOU商城</li>
+            <li class="Topbar-welcome-item">Hi,<font color="red">${user.username} </font>欢迎来到JSPGOU商城</li>
             <li class="Topbar-welcome-item"><a href="/logout.jspx?username=test1">退出登录</a></li>
         </ul>
     </div>
@@ -115,7 +115,7 @@
 <div class="Header">
     <div class="ctr pr">
         <a href=""><div class="Logo">
-            <img src="${pageContext.request.contextPath}/picture/logo_2.jpg" width="158" height="58" />
+            <img src="${pageContext.request.contextPath}/picture/logo_2.jpg" width="400" height="80" />
         </div></a>
         <form class="Search"  id="searchForm" action="/search.jspx">
             <input id="search_form_input" class="Search-input zi2" type="text"
@@ -169,18 +169,19 @@
         <!--导航栏 begin -->
         <li class="Nav-item fl first active"><a href="/" >首页</a></li>
         <input type="hidden" id="hidden1" value="6"></input>
-        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/computer?pid=1"   id="nav1">计算机类</a></li>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=1"   id="nav1">计算机类</a></li>
         <input type="hidden" id="hidden2" value="6"></input>
-        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/computer?pid=1"  id="nav2">小说类</a></li>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=2"  id="nav2">小说类</a></li>
         <input type="hidden" id="hidden3" value="6"></input>
-        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/computer?pid=1"  id="nav3">生活类</a></li>
-      <%--  <input type="hidden" id="hidden4" value="6"></input>
-        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/computer?pid=1"  id="nav4">日用百货</a></li>
-        <input type="hidden" id="hidden5" value="6"></input>
-        <li class="Nav-item fl"> <a href="/jiajujiancai/index.htm"  id="nav5">家居建材</a></li>
-        <input type="hidden" id="hidden6" value="6"></input>
-        <li class="Nav-item fl"> <a href="/zhubaoshoubiao/index.htm"  id="nav6">珠宝手表</a></li>--%>
-
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=3"  id="nav3">生活类</a></li>
+        <input type="hidden" id="hidden1" value="6"></input>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=4"   id="nav1">教辅类</a></li>
+        <input type="hidden" id="hidden1" value="6"></input>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=5"   id="nav1">励志类</a></li>
+        <input type="hidden" id="hidden2" value="6"></input>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=6"  id="nav2">科技类</a></li>
+        <input type="hidden" id="hidden3" value="6"></input>
+        <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=7"  id="nav3">儿童类</a></li>
         <!--导航栏 end -->
     </ul>
 </div>
@@ -293,7 +294,7 @@
         });
     });
 </script>
-<div class="caseImg03 ctr clearfix">
+<%--<div class="caseImg03 ctr clearfix">
     <div class="slideCase03">
         <div class="bd03">
             <div class="c3">
@@ -400,7 +401,7 @@
     <div class="caselayBox">
         <div class="casehtml"></div>
     </div>
-</div>
+</div>--%>
 <script type="text/javascript">
     jQuery(".slideCase03").slide({titCell:".hd03 ul",mainCell:".bd03 ul",autoPage:true,effect:"top",autoPlay:true,vis:3});
 </script>

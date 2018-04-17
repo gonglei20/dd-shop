@@ -147,7 +147,7 @@ jQuery("#productImgA").bind("click",
 
 (function($){
 	$.fn.jqzoom=function(options){
-		var settings={
+		/*var settings={
 				zoomType:"standard",
 				zoomWidth:200,
 				zoomHeight:200,
@@ -164,9 +164,9 @@ jQuery("#productImgA").bind("click",
 				fadeoutSpeed:"slow",
 				preloadImages:true,
 				showPreload:true,
-				preloadText:"Loading zoom",
-				preloadPosition:"center"
-			};
+				/!*preloadText:"Loading zoom",*!/
+				//preloadPosition:"center"
+			};*/
 		    options=options||{};
 			$.extend(settings,options);
 			return this.each(function(){

@@ -21,20 +21,20 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="commons" target="1.8" />
-      <module name="manager" target="1.8" />
-      <module name="manager-dao" target="1.8" />
-      <module name="manager-interface" target="1.8" />
-      <module name="manager-pojo" target="1.8" />
-      <module name="manager-service" target="1.8" />
-      <module name="manager-web" target="1.8" />
-      <module name="parent" target="1.8" />
-      <module name="portal" target="1.8" />
-      <module name="portal-dao" target="1.8" />
-      <module name="portal-interface" target="1.8" />
-      <module name="portal-pojo" target="1.8" />
-      <module name="portal-service" target="1.8" />
-      <module name="portal-web" target="1.8" />
+      <module name="commons" target="1.7" />
+      <module name="manager" target="1.7" />
+      <module name="manager-dao" target="1.7" />
+      <module name="manager-interface" target="1.7" />
+      <module name="manager-pojo" target="1.7" />
+      <module name="manager-service" target="1.7" />
+      <module name="manager-web" target="1.7" />
+      <module name="parent" target="1.7" />
+      <module name="portal" target="1.7" />
+      <module name="portal-dao" target="1.7" />
+      <module name="portal-interface" target="1.7" />
+      <module name="portal-pojo" target="1.7" />
+      <module name="portal-service" target="1.7" />
+      <module name="portal-web" target="1.7" />
       <module name="pportal-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
