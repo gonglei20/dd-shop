@@ -18,4 +18,7 @@ public interface IBookService {
 
     //通过Bid查询商品（用于商品详情页）
     Book findBookByBid(Book book);
+
+    //购物车实现
+    Book findBookByBidForCar(Book book);
 }

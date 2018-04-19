@@ -57,9 +57,11 @@
 </style>
 
 <body>
+
 <div class="main">
     <div class="top">
-        <iframe name="top" width="100%" height="100%" src="./top"></iframe>
+        <iframe name="top" width="100%" height="100%" src="./top">
+        </iframe>
     </div>
     <div class="bottom">
         <div class="left">

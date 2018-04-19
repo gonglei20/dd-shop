@@ -172,10 +172,14 @@
             </li>
         </ul>
         <ul class="Topbar-welcome fl" id="top_user_bar">
-            <li class="Topbar-welcome-item">Hi,<font color="red">  test1  </font>欢迎
-
-                来到JSPGOU商城</li>
-            <li class="Topbar-welcome-item"><a href="/logout.jspx?username=test1">退出登录</a></li>
+            <li class="Topbar-welcome-item">Hi,<font color="red">${user.username} </font>欢迎来到叮当书城</li>
+            <c:if test="${user.username==null}">
+                <li class="Topbar-welcome-item"><a href="${pageContext.request.contextPath}/login">登录</a></li>
+                <li class="Topbar-welcome-item"><a href="${pageContext.request.contextPath}/register">注册</a></li>
+            </c:if>
+            <c:if test="${user.username!=null}">
+                <li class="Topbar-welcome-item"><a onclick="logout()" href="javascript:void(0)">退出登录</a></li>
+            </c:if>
         </ul>
 
 
@@ -203,15 +207,7 @@
             <!-- <input class="Search-submit"  value="搜索" onclick="sousuo();"/>-->
             <input class="Search-submit" value="搜索" onclick="sousuo();"  type="button">
         </form>
-        <div class="Search-hot">
-            <a id="请输入关键词" onclick="parssKey(this);" class="gray">请输入关键词</a>
-            <a id="手机" onclick="parssKey(this);" class="gray">手机</a>
-            <a id="数码" onclick="parssKey(this);" class="gray">数码</a>
-            <a id="" onclick="parssKey(this);" class="gray"></a>
-            <a id="日用百货" onclick="parssKey(this);" class="gray">日用百货</a>
-            <a id="1" onclick="parssKey(this);" class="gray">1</a>
 
-        </div>
         <script type="text/javascript">
             function parssKey(o) {
                 var v = o.id;
@@ -234,7 +230,7 @@
         </script>
         <div class="top_shopping">
             <i></i>
-            <a href="/cart/shopping_cart.jspx">我的购物车(<span id="cart_total_items"></span>) </a>
+            <a href="${pageContext.request.contextPath}/proCar">我的购物车 </a>
         </div>
 
         <script type="text/javascript">
@@ -248,7 +244,7 @@
 
 
         <!--导航栏 begin -->
-        <li class="Nav-item fl first active"><a href="/" >首页</a></li>
+        <li class="Nav-item fl first active"><a href="${pageContext.request.contextPath}/index" >首页</a></li>
         <input type="hidden" id="hidden1" value="6"></input>
         <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=1"   id="nav1">计算机类</a></li>
         <input type="hidden" id="hidden2" value="6"></input>

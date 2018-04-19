@@ -40,4 +40,10 @@ public class BookService implements IBookService {
     public Book findBookByBid(Book book) {
         return bookMapper.findBookByBid(book);
     }
+
+    //购物车实现
+    @Override
+    public Book findBookByBidForCar(Book book) {
+        return bookMapper.findBookByBidForCar(book);
+    }
 }

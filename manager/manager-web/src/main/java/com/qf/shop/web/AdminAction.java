@@ -21,18 +21,38 @@ public class AdminAction {
     @Autowired
     private IAdminService adminService;
 
+  //判断用户是否登陆
+    @RequestMapping(value="/index")
+    public String index(HttpSession session){
+
+        if (session.getAttribute("user")==null){
+            return "login";
+        }else{
+            return "index";
+        }
+    }
+
     //管理员登陆模块
     @RequestMapping(value="/tologin",produces="plain/text;charset=UTF-8",method = RequestMethod.POST)
     @ResponseBody
     public String login(TbAdmin admin, HttpSession session){
         TbAdmin findAdmin = adminService.findAdmin(admin);
         if(findAdmin!=null){
-            session.setAttribute("findAdmin", findAdmin);
+            session.setAttribute("user", findAdmin);
             return "1";
         }else{
             return "0";
         }
     }
+
+    //注销操作
+    @RequestMapping(value="/logout")
+    public String logout(HttpSession session){
+            session.invalidate();
+            return "/index";
+
+    }
+
     //商品管理(查找所有商品)
     @RequestMapping(value = "/productList")
     public String findAll(HttpServletRequest request) {

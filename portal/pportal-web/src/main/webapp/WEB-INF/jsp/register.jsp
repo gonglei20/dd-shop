@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -14,7 +15,7 @@
     <link href="${pageContext.request.contextPath}/css/index_5.css" type="text/css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/member_2.css" type="text/css" rel="stylesheet" />
     <script src="${pageContext.request.contextPath}/js/jquery_3.js" type="text/javascript"></script>
-    <%--<script type="text/javascript">
+    <script type="text/javascript">
         $(function() {
             $("#jvForm").validate();
         });
@@ -24,27 +25,31 @@
                 return ;
             }
             $("#jvForm").submit()
-            location.href="${pageContext.request.contextPath}/toRegister"
-                alert("注册成功");
+           /* location.href="${pageContext.request.contextPath}/toRegister"
+                alert("注册成功");*/
 
         }
-    </script>--%>
+    </script>
 </head>
 
 <body>
 <div id="Topbar" class="Topbar">
     <div class="ctr cf">
         <ul class="Topbar-menu fr">
-            <li class="Topbar-menu-item ib"><a href="/order/myorder.jspx">我的JSPGOU</a></li>
+            <li class="Topbar-menu-item ib"><a href="/order/myorder.jspx">个人中心</a></li>
             <li class="Topbar-menu-item ib"><a href="/collect/mycollect.jspx">收藏夹</a></li>
             <!--<li class="Topbar-menu-item ib"><a target="_blank" href="">网站导航</a>-->
             </li>
         </ul>
         <ul class="Topbar-welcome fl" id="top_user_bar">
-            <li class="Topbar-welcome-item">Hi~欢迎来到JSPGOU商城</li>
-            <li class="Topbar-welcome-item"><a href="/login.jspx">请登录</a></li>
-            <li class="Topbar-welcome-item"><a
-                    href="/register.jspx">免费注册</a></li>
+            <li class="Topbar-welcome-item">Hi,<font color="red">${user.username} </font>欢迎来到叮当书城</li>
+            <c:if test="${user.username==null}">
+                <li class="Topbar-welcome-item"><a href="${pageContext.request.contextPath}/login">登录</a></li>
+                <li class="Topbar-welcome-item"><a href="${pageContext.request.contextPath}/register">注册</a></li>
+            </c:if>
+            <c:if test="${user.username!=null}">
+                <li class="Topbar-welcome-item"><a onclick="logout()" href="javascript:void(0)">退出登录</a></li>
+            </c:if>
         </ul>
 
 
@@ -53,6 +58,12 @@
 </div>
 
 <script type="text/javascript">
+    function logout() {
+        var result = confirm("确认注销？");
+        if(result){
+            location.href ="${pageContext.request.contextPath}/logout";
+        }
+    }
     console.log(2);
     localStorage.removeItem("sessionKey");
     localStorage.removeItem("userName");
@@ -61,7 +72,7 @@
 <div class="user-page-content">
     <div class="clearfix w">
         <div class="content-one content-hei">
-            <div class="user_title">注册新用户<span class="fr" style="font-size:12px;">已有帐号，<a href="/login.jspx" style="color:#F00; font-size:14px;">登录</a></span></div>
+            <div class="user_title">注册新用户<span class="fr" style="font-size:12px;">已有帐号，<a href="${pageContext.request.contextPath}/login" style="color:#F00; font-size:14px;">登录</a></span></div>
             <form id="jvForm" action="register.jspx" method="post">
                 <table border="0" align="center" cellpadding="3" cellspacing="0" class="zhuce">
                     <tr>

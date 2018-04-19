@@ -26,9 +26,11 @@
 <body>
 <!--    顶部   -->
 <div id="head">
-    <div class="left"> <a class="button profile"><img src="${pageContext.request.contextPath}/images/huser.png" alt=""></a> Hi, <a>Stefan Salvatore</a>
+    <div class="left"> <a class="button profile"><img src="${pageContext.request.contextPath}/images/huser.png" alt="">
+    </a> Hi, <font color="red">${user.adminName}</font>
     <a style="padding-left: 30px"></a>
     </div>
+
 </div>
 
 </body>

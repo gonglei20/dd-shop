@@ -1,6 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: Lenovo
+  User: gonglei
   Date: 2018/3/27
   Time: 17:54
   To change this template use File | Settings | File Templates.
@@ -10,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>	首页 - jeegou开发站- Powered by JSPGOU</title>
+    <title>叮当网上书城	首页</title>
     <meta http-equiv="keywords" content="叮当网上书城"/>
     <meta http-equiv="description" content="叮当网上书城"/>
     <link href="${pageContext.request.contextPath}/css/index_2.css" type="text/css" rel="stylesheet" />
@@ -20,6 +21,12 @@
 </head>
 <body style="background:#f5f5f5;">
 <script type="text/javascript">
+    function logout() {
+      var result = confirm("确认注销？");
+      if(result){
+       location.href ="${pageContext.request.contextPath}/logout";
+      }
+    }
 
    /* function fn3(obj){
         $.ajax({
@@ -90,26 +97,35 @@
     }
 
     HS_OnlineService.init();
-</script><div id="Topbar" class="Topbar">
+</script>
+
+
+<div id="Topbar" class="Topbar">
     <div class="ctr cf">
         <ul class="Topbar-menu fr">
-            <li class="Topbar-menu-item ib"><a href="/order/myorder.jspx">我的JSPGOU</a></li>
+            <li class="Topbar-menu-item ib"><a href="/order/myorder.jspx">个人中心</a></li>
             <li class="Topbar-menu-item ib"><a href="/collect/mycollect.jspx">收藏夹</a></li>
             <!--<li class="Topbar-menu-item ib"><a target="_blank" href="">网站导航</a>-->
             </li>
         </ul>
         <ul class="Topbar-welcome fl" id="top_user_bar">
-            <li class="Topbar-welcome-item">Hi,<font color="red">${user.username} </font>欢迎来到JSPGOU商城</li>
-            <li class="Topbar-welcome-item"><a href="/logout.jspx?username=test1">退出登录</a></li>
+            <li class="Topbar-welcome-item">Hi,<font color="red">${user.username} </font>欢迎来到叮当书城</li>
+            <c:if test="${user.username==null}">
+                <li class="Topbar-welcome-item"><a href="${pageContext.request.contextPath}/login">登录</a></li>
+                <li class="Topbar-welcome-item"><a href="${pageContext.request.contextPath}/register">注册</a></li>
+            </c:if>
+            <c:if test="${user.username!=null}">
+                <li class="Topbar-welcome-item"><a onclick="logout()" href="javascript:void(0)">退出登录</a></li>
+            </c:if>
         </ul>
     </div>
 </div>
 
-<script type="text/javascript">
+<%--<script type="text/javascript">
     console.log(1);
     localStorage.setItem("sessionKey",'afc7b8b5e720f9d11db023611f4d1e4329509e46c878011df41b18ff5b3716e9066a2b8cc0e40ebb3feb513f6edcb0be');
     localStorage.setItem("userName", 'test1');
-</script>
+</script>--%>
 
 <!-- 搜索栏begin -->
 <div class="Header">
@@ -127,21 +143,6 @@
             <!-- <input class="Search-submit"  value="搜索" onclick="sousuo();"/>-->
             <input class="Search-submit" value="搜索 " onclick="sousuo();"  type="button">
         </form>
-        <div class="Search-hot">
-            <a style="cursor: pointer;"
-               id="请输入关键词" onclick="parssKey(this);" class="gray">请输入关键词</a>
-            <a style="cursor: pointer;"
-               id="手机" onclick="parssKey(this);" class="gray">手机</a>
-            <a style="cursor: pointer;"
-               id="数码" onclick="parssKey(this);" class="gray">数码</a>
-            <a style="cursor: pointer;"
-               id="" onclick="parssKey(this);" class="gray"></a>
-            <a style="cursor: pointer;"
-               id="日用百货" onclick="parssKey(this);" class="gray">日用百货</a>
-            <a style="cursor: pointer;"
-               id="1" onclick="parssKey(this);" class="gray">1</a>
-
-        </div>
         <script type="text/javascript">
             function parssKey(o) {
                 var v = o.id;
@@ -167,7 +168,7 @@
 <div class="Nav">
     <ul class="ctr cf pr">
         <!--导航栏 begin -->
-        <li class="Nav-item fl first active"><a href="/" >首页</a></li>
+        <li class="Nav-item fl first active"><a href="${pageContext.request.contextPath}/index" >首页</a></li>
         <input type="hidden" id="hidden1" value="6"></input>
         <li class="Nav-item fl"> <a href="${pageContext.request.contextPath}/cat?pid=1"   id="nav1">计算机类</a></li>
         <input type="hidden" id="hidden2" value="6"></input>
@@ -192,13 +193,13 @@
     <ul class="buypic">
         <li><a href="http://demo3.jeecms.com/xiebao/index.htm" target="_blank"><img
 
-                src="picture/06160743kney_1.jpg" width="1624" height="440" /></a></li>
+                src="${pageContext.request.contextPath}/images/1.1.png" width="1624" height="440" /></a></li>
         <li><a href="http://demo3.jeecms.com/fuzhuang/index.htm" target="_blank"><img
 
-                src="picture/061607301kbo_1.jpg" width="1624" height="440" /></a></li>
+                src="${pageContext.request.contextPath}/images/1.2.png" width="1624" height="440" /></a></li>
         <li><a href="http://demo3.jeecms.com/riyongbaihuo/index.htm" target="_blank"><img
 
-                src="picture/06160703u2s5_1.jpg" width="1624" height="440" /></a></li>
+                src="${pageContext.request.contextPath}/images/1.5.png" width="1624" height="440" /></a></li>
 
     </ul>
     <a class="prev" href="javascript:void(0)"></a> <a class="next"
@@ -232,7 +233,7 @@
 </script>
 <!--中间广告图片end  -->
 
-<div class="advert-img">
+<%--<div class="advert-img">
     <div class="w clearfix">
         <div class="fl img-item ">
             <div class="word">
@@ -278,7 +279,7 @@
                     src="picture/s4_1.jpg"></a>
         </div>
     </div>
-</div>
+</div>--%>
 <script type="text/javascript">
     $(function(){
         var caseHtml="<img src=picture/3b5856c8fd084c1aaed851b6f3344555.gif"/r/gou/www/images/c_b_1.jpg\" />";
@@ -294,114 +295,6 @@
         });
     });
 </script>
-<%--<div class="caseImg03 ctr clearfix">
-    <div class="slideCase03">
-        <div class="bd03">
-            <div class="c3">
-                <a class="grid one-grid small" href="/riyongbaihuo/40.htm">
-                    <div class="title">快乐学习</div>
-                    <div class="sub-title">打造亲子游戏</div>
-                    <img src="picture/09110022apad_2.jpg">
-                    </img>
-                </a>
-                <div class="hidden">
-                    <a href="/riyongbaihuo/40.htm">  <img src="picture/09110103o39o_1.jpg"/>  </a>
-                </div>
-            </div>
-            <div class="c3">
-                <a class="grid one-grid small" href="/woman/35.htm">
-                    <div class="title">恋爱女王节妈咪版</div>
-                    <div class="sub-title">美丽变身季</div>
-                    <img src="picture/08133609vw7k_2.jpg">
-                    </img>
-                </a>
-                <div class="hidden">
-                    <a href="/woman/35.htm">  <img src="picture/08133627vekx_1.jpg"/>  </a>
-                </div>
-            </div>
-            <div class="c3">
-                <a class="grid one-grid small" href="/nvxie/34.htm">
-                    <div class="title">春季新品发布会</div>
-                    <div class="sub-title">换新触发 ，寻找真我</div>
-                    <img src="picture/08133422q64n_1.jpg">
-                    </img>
-                </a>
-                <div class="hidden">
-                    <a href="/nvxie/34.htm">  <img src="picture/08134513tbrl_1.jpg"/>  </a>
-                </div>
-            </div>
-            <div class="c3">
-                <a class="grid one-grid small" href="/riyongbaihuo/33.htm">
-                    <div class="title">护栏加宽置物架</div>
-                    <div class="sub-title">十年生锈包换新</div>
-                    <img src="picture/081332452i71_1.jpg">
-                    </img>
-                </a>
-                <div class="hidden">
-                    <a href="/riyongbaihuo/33.htm">  <img src="picture/081344040ef9_1.jpg"/>  </a>
-                </div>
-            </div>
-            <div class="c3">
-                <a class="grid one-grid small" href="/riyongbaihuo/32.htm">
-                    <div class="title">巧妇收纳秘籍</div>
-                    <div class="sub-title">可省75%空间</div>
-                    <img src="picture/08133139vwiz_1.jpg">
-                    </img>
-                </a>
-                <div class="hidden">
-                    <a href="/riyongbaihuo/32.htm">  <img src="picture/081331570f2z_1.jpg"/>  </a>
-                </div>
-            </div>
-            <div class="c3">
-                <a class="grid one-grid small" href="/riyongbaihuo/31.htm">
-                    <div class="title">德国进口热水袋</div>
-                    <div class="sub-title">安全防暴无毒保温</div>
-                    <img src="picture/08133008d6xt_1.jpg">
-                    </img>
-                </a>
-                <div class="hidden">
-                    <a href="/riyongbaihuo/31.htm">  <img src="picture/0813433503xr_1.jpg"/>  </a>
-                </div>
-            </div>
-            <div class="c3">
-                <a class="grid one-grid small" href="/bg/30.htm">
-                    <div class="title">木质箱 低音可调</div>
-                    <div class="sub-title">快乐超酷家庭首选</div>
-                    <img src="picture/08132857pwgx_1.jpg">
-                    </img>
-                </a>
-                <div class="hidden">
-                    <a href="/bg/30.htm">  <img src="picture/081329281jw2_1.jpg"/>  </a>
-                </div>
-            </div>
-            <div class="c3">
-                <a class="grid one-grid small" href="/woman/29.htm">
-                    <div class="title">0-6岁 婴幼服饰</div>
-                    <div class="sub-title">安全柔软舒适</div>
-                    <img src="picture/08132728cc4o_2.jpg">
-                    </img>
-                </a>
-                <div class="hidden">
-                    <a href="/woman/29.htm">  <img src="picture/08132744djsq_1.jpg"/>  </a>
-                </div>
-            </div>
-            <div class="c3">
-                <a class="grid one-grid small" href="/nanbao/27.htm">
-                    <div class="title">源自法国头皮 牛包</div>
-                    <div class="sub-title">约会神器零钱卡片收纳</div>
-                    <img src="picture/081323138k7f_1.jpg">
-                    </img>
-                </a>
-                <div class="hidden">
-                    <a href="/nanbao/27.htm">  <img src="picture/081322476p6l_1.jpg"/>  </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="caselayBox">
-        <div class="casehtml"></div>
-    </div>
-</div>--%>
 <script type="text/javascript">
     jQuery(".slideCase03").slide({titCell:".hd03 ul",mainCell:".bd03 ul",autoPage:true,effect:"top",autoPlay:true,vis:3});
 </script>
@@ -412,7 +305,7 @@
         <div class="floor-name">计算机类</div>
         <div class="line-body">
           <div class="hot-word-con">
-                <a href="/shouji/index.htm" class="hot-word">查看更多>>></a>
+                <a href="${pageContext.request.contextPath}/cat?pid=1" class="hot-word">查看更多>>></a>
             </div>
             <div class="left-column-con blueBg">
                 <div class="title">坚果智能影院</div>
@@ -461,41 +354,33 @@
                 </script>
             </div>
             <div class="right-column-con">
-                <a class="grid one-grid"  href="/sanxing/59.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=1">
                     <div class="title">操作系统
                     </div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/02161238e7wo_2.jpg">
                     </img>
                 </a>
-                <a class="grid one-grid"  href="/bg/16.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=2">
                     <div class="title">编程语言
                     </div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/061626478mo5_1.jpg">
                     </img>
                 </a>
-                <a class="grid one-grid"  href="/tsj/15.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=3">
                     <div class="title">计算机网络</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/061625384z8h_1.jpg"/>
-
                 </a>
-                <a class="grid one-grid"  href="/bjb/14.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=4">
                     <div class="title">数据库</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/06162402vno3_1.jpg">
                     </img>
-
                 </a>
-                <a class="grid one-grid"  href="/xj/13.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=5">
                     <div class="title">人工智能</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/06162301f2zj_1.jpg"></img>
                 </a>
-                <a class="grid one-grid"  href="/Iphone/12.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=6">
                     <div class="title">多媒体</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/0616183833km_2.jpg"></img>
                 </a>
             </div>
@@ -511,7 +396,7 @@
         <div class="floor-name">小说</div>
         <div class="line-body">
             <div class="hot-word-con">
-                <a href="/kuzi/index.htm" class="hot-word">查看更多>>></a>
+                <a href="${pageContext.request.contextPath}/cat?pid=2" class="hot-word">查看更多>>></a>
             </div>
             <div class="left-column-con pinkBg">
                 <div class="title">卧室个性巧搭</div>
@@ -558,37 +443,31 @@
                 </script>
             </div>
             <div class="right-column-con">
-                <a class="grid one-grid"  href="/woman/37.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=7">
                     <div class="title">当代小说</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/09110440ls2s_1.jpg"></img>
 
                 </a>
-                <a class="grid one-grid"  href="/woman/22.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=8">
                     <div class="title">都市</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/06171019ezrz_1.jpg"></img>
 
                 </a>
-                <a class="grid one-grid"  href="/woman/21.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=9">
                     <div class="title">言情</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/06170852f8wr_1.jpg"></img>
                 </a>
-                <a class="grid one-grid"  href="/woman/20.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=10">
                     <div class="title">职场</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/06170735f214_1.jpg"></img>
                 </a>
-                <a class="grid one-grid"  href="/man/19.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=11">
                     <div class="title">悬疑</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/06170631wgix_1.jpg"></img>
 
                 </a>
-                <a class="grid one-grid"  href="/man/18.htm">
+                <a class="grid one-grid"  href="${pageContext.request.contextPath}/listCat?cid=12">
                     <div class="title">世界名著</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/06170500mfam_1.jpg"></img>
                 </a>
             </div>
@@ -605,7 +484,7 @@
         <div class="floor-name">生活</div>
         <div class="line-body">
             <div class="hot-word-con">
-                <a href="/wujingongju/index.htm" class="hot-word">查看更多>>></a>
+                <a href="${pageContext.request.contextPath}/cat?pid=3" class="hot-word">查看更多>>></a>
             </div>
             <div class="left-column-con greenBg">
                 <div class="title">卧室个性巧搭</div>
@@ -653,33 +532,27 @@
             <div class="right-column-con">
                 <a class="grid one-grid"  href="/wujingongju/39.htm">
                     <div class="title">烹饪</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/130946189262_1.jpg"></img>
                 </a>
                 <a class="grid one-grid"  href="/woshijiaj/36.htm">
                     <div class="title">养生/保健</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/091056187tib_1.jpg"></img>
                 </a>
                 <a class="grid one-grid"  href="/woshijiaj/28.htm">
                     <div class="title">胎教</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/13095401tlfm_1.jpg"></img>
                 </a>
                 <a class="grid one-grid"  href="/woshijiaj/26.htm">
                     <div class="title">亲子/家教</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/06172100h4h8_1.jpg"></img>
                 </a>
                 <a class="grid one-grid"  href="/woshijiaj/25.htm">
                     <div class="title">时尚/美妆
                     </div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/13102848c957_1.jpg"></img>
                 </a>
                 <a class="grid one-grid"  href="/woshijiaj/24.htm">
                     <div class="title">体育/运动</div>
-                    <div class="sub-title">联合营销</div>
                     <img src="picture/1310173552gr_1.jpg"></img>
                 </a>
             </div>

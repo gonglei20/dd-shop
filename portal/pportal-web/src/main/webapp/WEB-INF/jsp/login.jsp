@@ -13,6 +13,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=7" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>会员登录页</title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/messages_zh.js"></script>
+
     <link href="${pageContext.request.contextPath}/css/index_6.css" type="text/css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/member_3.css" type="text/css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/login.css" type="text/css" rel="stylesheet" />
@@ -27,8 +31,8 @@
 <body style="background:#fff;">
 <div class="Header">
     <div class="ctr pr">
-        <a href="/" title="返回单店首页">
-            <img src="picture/logo_6.jpg" width="158" height="58" class="Logo" />
+        <a href="${pageContext.request.contextPath}/index" title="返回首页">
+            <img src="picture/logo_2.jpg" style="width:400px;height:80px;"  class="Logo" />
         </a>
     </div>
 </div>
@@ -36,9 +40,8 @@
 <div style="width:1000px; margin:auto auto 30px auto; overflow:hidden;">
     <img src="picture/login_pic.jpg" class="fl" />
     <div class="fr">
-        <form action="${pageContext.request.contextPath}/checkLogin" method="post">
+        <form id="loginForm">
             <div style="line-height:30px;">
-
                 <input type="hidden" name="returnUrl" value="/"/>
             </div>
 
@@ -47,8 +50,8 @@
                 <table width="335" border="0" align="center" cellpadding="2" cellspacing="0" style="margin:auto;">
                     <tr>
                         <td height="70">
-                            <div class="fl" style="font-size:18px; color:#484848; font-family:微软雅黑;">账户登录</div>
-                            <a href="/register.jspx" style="color:#cf1e1e; font-size:14px;" class="fr">免费注册</a>
+                            <div class="fl" style="font-size:18px; color:#484848; font-family:微软雅黑;">用户登录</div>
+                            <a href="${pageContext.request.contextPath}/register" style="color:#cf1e1e; font-size:14px;" class="fr">免费注册</a>
                         </td>
                     </tr>
                     <tr>
@@ -58,7 +61,7 @@
                     </tr>
                     <tr>
                         <td height="75">
-                            <input type="password" name="password" id="" class="loginInput" placeholder="密码" />
+                            <input type="password" name="password" id="password" class="loginInput" required="true" placeholder="密码" />
                         </td>
                     </tr>
                     <tr>
@@ -66,13 +69,19 @@
                             <a href="/forgot_password.jspx" target="_blank" class="fr">忘记密码</a>
                         </td>
                     </tr>
+                   <tr>
+                       <td>
+                           <b><font color="red" size="3px" id="mess"></font></b>
+                       </td>
 
+                   </tr>
                     <tr>
                         <td height="75" >
                             <input type="submit" value="登 录" style="width:100%; height:45px; text-align:center; color:#fff; background:#AF0000; cursor:pointer; border:0; font-size:16px;border-radius:4px;"/>
                         </td>
                     </tr>
                 </table>
+
 
 
                 <div class="quick">
@@ -175,4 +184,37 @@
     <div class="ctr tac">Copyright © JSPGOU 2017，All Rights Reserved</div>
 </div>
 </body>
+<script type="text/javascript">
+
+    //表单校验
+    $(function() {
+        $("#loginForm").validate({
+            rules : {
+                username : "required",
+                password : "required"
+            },
+            messages : {
+                username : "工号不能为空",
+                password : "密码不能为空"
+            },
+            submitHandler : function() {
+                //提交Ajax
+                $.ajax({
+                    data : $("#loginForm").serialize(),
+                    dataType : "text",
+                    type : "post",
+                    url : "${pageContext.request.contextPath}/checkLogin",
+                    success : function(rec) {
+                    if(rec=="0"){
+                        $("#mess").html("用户名或密码错误");
+                    }else{
+                        location.href = "${pageContext.request.contextPath}/index"
+                    }
+                }
+            });
+            }
+        });
+    })
+
+</script>
 </html>

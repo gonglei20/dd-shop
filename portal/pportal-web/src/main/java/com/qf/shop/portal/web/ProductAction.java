@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qf.shop.portal.pojo.Book;
 import com.qf.shop.portal.pojo.Category;
+import com.qf.shop.portal.pojo.OrderItem;
 import com.qf.shop.portal.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -13,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ProductAction {
     @Autowired
     private IBookService bookService;
+    List<Book> bookList = new ArrayList<Book>();
 
     //各个类别图书列表显示
    @RequestMapping(value = "/cat")
@@ -48,5 +52,33 @@ public class ProductAction {
         request.setAttribute("findOneBook",findOneBook);
         return "proInfo";
     }
+
+    //加入购物车
+    @RequestMapping(value = "/addCat")
+    public String addCat(Book book, HttpServletRequest request,HttpSession session){
+
+        if (session.getAttribute("user")!=null){
+
+
+        }else{
+           Book findBookByBidForCar = bookService.findBookByBidForCar(book);
+           bookList.add(findBookByBidForCar);
+            session.setAttribute("userCar",bookList);
+        }
+        return "/proInfo";
+    }
+   /* @RequestMapping(value = "/addCat")
+    public String addCat(OrderItem orderItem, HttpServletRequest request, HttpSession session){
+
+        if (session.getAttribute("user")!=null){
+
+
+        }else{
+            Book findBookByBidForCar = bookService.findBookByBidForCar(book);
+            bookList.add(findBookByBidForCar);
+            session.setAttribute("userCar",bookList);
+        }
+        return "/proInfo";
+    }*/
 
 }
