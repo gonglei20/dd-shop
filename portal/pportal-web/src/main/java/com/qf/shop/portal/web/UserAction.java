@@ -57,4 +57,14 @@ public class UserAction {
         }
         return "index";
     }
+
+    //个人中心
+    @RequestMapping(value = "/myCenter")
+    public String myCenter(HttpSession session){
+           if (session.getAttribute("user") !=null) {
+               return "myCenter";
+           }else{
+               return "login";
+           }
+    }
 }

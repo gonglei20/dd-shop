@@ -11,9 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>服装 - jeegou开发站- Powered by JSPGOU</title>
-    <meta http-equiv="keywords" content="JSPGOU演示站"/>
-    <meta http-equiv="description" content="JSPGOU演示站"/>
+    <title>${oneCategory.pname}</title>
     <link href="${pageContext.request.contextPath}/css/index_8.css" type="text/css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/list.css" type="text/css" rel="stylesheet" />
     <script src="${pageContext.request.contextPath}/js/jquery1.42.min_2.js" type="text/javascript"></script>
@@ -166,7 +164,7 @@
 <div id="Topbar" class="Topbar">
     <div class="ctr cf">
         <ul class="Topbar-menu fr">
-            <li class="Topbar-menu-item ib"><a href="/order/myorder.jspx">我的JSPGOU</a></li>
+            <li class="Topbar-menu-item ib"><a href="${pageContext.request.contextPath}/myCenter">个人中心</a></li>
             <li class="Topbar-menu-item ib"><a href="/collect/mycollect.jspx">收藏夹</a></li>
             <!--<li class="Topbar-menu-item ib"><a target="_blank" href="">网站导航</a>-->
             </li>
@@ -221,7 +219,10 @@
                 if(a=="请输入关键词"){
                     alert("亲！请输入关键词");
                 }else{
-                    document.getElementById("searchForm").submit();
+                    var keyWord = $("input[name='q']").val()
+                    alert(keyWord);
+                    location.href="${pageContext.request.contextPath}/findSearch?bname="+keyWord;
+                    // document.getElementById("searchForm").submit();
 
                 }
             }
@@ -294,8 +295,8 @@
         <ul class="s-attrs clearfix" style="margin-right:10px;">
             <input type="hidden" name="orderBy" id="orderBy" value="0"/>
             <li class="normal"><a  onclick="clickOrderBy(0);" title="默认排序">综合</a></li>
-            <li ><a onclick="clickOrderBy(4);"><span>销量</span></a></li>
-            <li class="defaultPrice"><a onclick="clickOrderBy(7);" > <span>价格</span></a></li>
+            <li ><a href="${pageContext.request.contextPath}/orderBySell"><span>销量</span></a></li>
+            <li class="defaultPrice"><a href="${pageContext.request.contextPath}/orderByPrice" > <span>价格</span></a></li>
             <li ><a onclick="clickOrderBy(2);"><span>上架时间</span></a></li>
         </ul>
         <span style="margin-left:10px;">
@@ -316,7 +317,12 @@
     <div id="JS_list_panel" class="list-panel">
         <div class="list-wrap">
             <ul class="list-goods clearfix" style="width:1220px;">
+
                 <c:forEach items="${findBook }" var="bok">
+                    <c:if test="${findBook==null}">
+                        <h3>duibuqi</h3>
+                    </c:if>
+                    <c:if test="${findBook!=null }">
                 <li class="g-item">
                     <div class="g-dtl">
                         <a href="${pageContext.request.contextPath}/proInfo?bid=${bok.bid}" target="_blank"  >
@@ -334,10 +340,18 @@
                         <a href="" target="_blank"  class="d-name">
                             <span>${bok.bname}</span>
                         </a>
+                        <a href="" target="_blank"  class="d-name">
+                            <span>销量：${bok.totalSell}</span>
+                        </a>
                     </div>
                 </li>
+                    </c:if>
+
                 </c:forEach>
+
+
             </ul>
+
         </div>
     </div>
     <div class="scott">

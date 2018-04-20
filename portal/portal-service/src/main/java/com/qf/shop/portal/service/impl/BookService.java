@@ -1,5 +1,6 @@
 package com.qf.shop.portal.service.impl;
 
+
 import com.qf.shop.portal.dao.BookMapper;
 import com.qf.shop.portal.pojo.Book;
 import com.qf.shop.portal.pojo.Category;
@@ -45,5 +46,23 @@ public class BookService implements IBookService {
     @Override
     public Book findBookByBidForCar(Book book) {
         return bookMapper.findBookByBidForCar(book);
+    }
+
+    //按照销量排序
+    @Override
+    public List<Book> findBookOrderBySell() {
+        return bookMapper.findBookOrderBySell();
+    }
+
+    //按照价格排序
+    @Override
+    public List<Book> findBookOrderByPrice() {
+        return bookMapper.findBookOrderByPrice();
+    }
+
+    //商品搜索
+    @Override
+    public List<Book> findBookBySearch(Book book) {
+        return bookMapper.findBookBySearch(book);
     }
 }

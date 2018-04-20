@@ -81,4 +81,15 @@ public class ProductAction {
         return "/proInfo";
     }*/
 
+   //商品搜索
+   @RequestMapping(value = "/findSearch")
+   public String findSearch(Book book, HttpServletRequest request){
+       System.out.println("++++++++++");
+        System.out.println(book.getBname());
+       List<Book> result =  bookService.findBookBySearch(book);
+       request.setAttribute("findBook",result);
+       return "/proIndex";
+   }
+
+
 }

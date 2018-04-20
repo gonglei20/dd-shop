@@ -1094,7 +1094,7 @@
 <div id="Topbar" class="Topbar">
     <div class="ctr cf">
         <ul class="Topbar-menu fr">
-            <li class="Topbar-menu-item ib"><a href="/order/myorder.jspx">我的JSPGOU</a></li>
+            <li class="Topbar-menu-item ib"><a href="${pageContext.request.contextPath}/myCenter">个人中心</a></li>
             <li class="Topbar-menu-item ib"><a href="/collect/mycollect.jspx">收藏夹</a></li>
             <!--<li class="Topbar-menu-item ib"><a target="_blank" href="">网站导航</a>-->
             </li>
@@ -1142,15 +1142,6 @@
             <!-- <input class="Search-submit"  value="搜索" onclick="sousuo();"/>-->
             <input class="Search-submit" value="搜索" onclick="sousuo();"  type="button">
         </form>
-        <div class="Search-hot">
-            <a id="请输入关键词" onclick="parssKey(this);" class="gray">请输入关键词</a>
-            <a id="手机" onclick="parssKey(this);" class="gray">手机</a>
-            <a id="数码" onclick="parssKey(this);" class="gray">数码</a>
-            <a id="" onclick="parssKey(this);" class="gray"></a>
-            <a id="日用百货" onclick="parssKey(this);" class="gray">日用百货</a>
-            <a id="1" onclick="parssKey(this);" class="gray">1</a>
-
-        </div>
         <script type="text/javascript">
             function parssKey(o) {
                 var v = o.id;
@@ -1164,7 +1155,10 @@
                 if(a=="请输入关键词"){
                     alert("亲！请输入关键词");
                 }else{
-                    document.getElementById("searchForm").submit();
+                    var keyWord = $("input[name='q']").val()
+                    //alert(keyWord);
+                    location.href="${pageContext.request.contextPath}/findSearch?bname="+keyWord;
+                    // document.getElementById("searchForm").submit();
 
                 }
             }
@@ -1255,7 +1249,6 @@
                         <h3>
                           <a href="${pageContext.request.contextPath}/proInfo?bid=${userCar.bid}" target="_blank">
                                     ${userCar.bname}&nbsp;
-
                             </a>
                         </h3>
                     </td>

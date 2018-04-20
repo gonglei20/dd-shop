@@ -6,13 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>商品详情页</title>
-    <meta http-equiv="keywords" content="JSPGOU演示站"/>
-    <meta http-equiv="description" content="JSPGOU演示站"/>
     <link href="css/index_7.css" type="text/css" rel="stylesheet" />
     <link href="css/product.css" type="text/css" rel="stylesheet" />
     <script src="js/jquery_5.js" type="text/javascript"></script>
@@ -65,7 +64,7 @@
 <div id="Topbar" class="Topbar">
     <div class="ctr cf">
         <ul class="Topbar-menu fr">
-            <li class="Topbar-menu-item ib"><a href="/order/myorder.jspx">我的JSPGOU</a></li>
+            <li class="Topbar-menu-item ib"><a href="${pageContext.request.contextPath}/myCenter">个人中心</a></li>
             <li class="Topbar-menu-item ib"><a href="/collect/mycollect.jspx">收藏夹</a></li>
             <!--<li class="Topbar-menu-item ib"><a target="_blank" href="">网站导航</a>-->
             </li>
@@ -120,7 +119,10 @@
                 if(a=="请输入关键词"){
                     alert("亲！请输入关键词");
                 }else{
-                    document.getElementById("searchForm").submit();
+                    var keyWord = $("input[name='q']").val()
+                    //alert(keyWord);
+                    location.href="${pageContext.request.contextPath}/findSearch?bname="+keyWord;
+                    // document.getElementById("searchForm").submit();
 
                 }
             }
@@ -129,7 +131,7 @@
         </script>
         <div class="top_shopping">
             <i></i>
-            <a href="${pageContext.request.contextPath}/proCar">我的购物车(<span id="cart_total_items"></span>) </a>
+            <a href="${pageContext.request.contextPath}/proCar">我的购物车</a>
         </div>
 
         <script type="text/javascript">

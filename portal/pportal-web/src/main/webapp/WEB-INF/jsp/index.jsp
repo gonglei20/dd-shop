@@ -103,7 +103,7 @@
 <div id="Topbar" class="Topbar">
     <div class="ctr cf">
         <ul class="Topbar-menu fr">
-            <li class="Topbar-menu-item ib"><a href="/order/myorder.jspx">个人中心</a></li>
+            <li class="Topbar-menu-item ib"><a href="${pageContext.request.contextPath}/myCenter">个人中心</a></li>
             <li class="Topbar-menu-item ib"><a href="/collect/mycollect.jspx">收藏夹</a></li>
             <!--<li class="Topbar-menu-item ib"><a target="_blank" href="">网站导航</a>-->
             </li>
@@ -155,7 +155,10 @@
                 if(a=="请输入关键词"){
                     alert("亲！请输入关键词");
                 }else{
-                    document.getElementById("searchForm").submit();
+                    var keyWord = $("input[name='q']").val()
+                    //alert(keyWord);
+                    location.href="${pageContext.request.contextPath}/findSearch?bname="+keyWord;
+                   // document.getElementById("searchForm").submit();
 
                 }
             }

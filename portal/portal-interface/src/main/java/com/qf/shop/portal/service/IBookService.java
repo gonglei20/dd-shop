@@ -21,4 +21,13 @@ public interface IBookService {
 
     //购物车实现
     Book findBookByBidForCar(Book book);
+
+    //按找销量排序
+    List<Book> findBookOrderBySell();
+
+    //按找价格排序
+    List<Book> findBookOrderByPrice();
+
+    //商品搜索
+    List<Book> findBookBySearch(Book book);
 }

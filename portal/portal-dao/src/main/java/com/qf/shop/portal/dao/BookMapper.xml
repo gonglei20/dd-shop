@@ -29,4 +29,18 @@
         SELECT * FROM t_book  WHERE bid=#{bid}
     </select>
 
+    <!--按照销量排序-->
+    <select id="findBookOrderBySell"  resultType="com.qf.shop.portal.pojo.Book">
+        SELECT * FROM t_book  order by totalsell DESC
+    </select>
+
+    <!--按照价格排序-->
+    <select id="findBookOrderByPrice"  resultType="com.qf.shop.portal.pojo.Book">
+        SELECT * FROM t_book  order by totalsell DESC
+    </select>
+
+    <!--商品搜索-->
+    <select id="findBookBySearch" parameterType="com.qf.shop.portal.pojo.Book" resultType="com.qf.shop.portal.pojo.Book">
+        SELECT * FROM t_book  WHERE bname LIKE '%${bname}%'
+    </select>
 </mapper>
