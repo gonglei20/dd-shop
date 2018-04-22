@@ -11,7 +11,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>${oneCategory.pname}</title>
+    <title>商品页</title>
+
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
     <link href="${pageContext.request.contextPath}/css/index_8.css" type="text/css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/list.css" type="text/css" rel="stylesheet" />
     <script src="${pageContext.request.contextPath}/js/jquery1.42.min_2.js" type="text/javascript"></script>
@@ -220,7 +226,7 @@
                     alert("亲！请输入关键词");
                 }else{
                     var keyWord = $("input[name='q']").val()
-                    alert(keyWord);
+                    //alert(keyWord);
                     location.href="${pageContext.request.contextPath}/findSearch?bname="+keyWord;
                     // document.getElementById("searchForm").submit();
 
@@ -289,13 +295,14 @@
     </div>
 </div>
 
-
+<%--
 <div class="w self-panel">
     <div class="self-wrap clearfix">
         <ul class="s-attrs clearfix" style="margin-right:10px;">
             <input type="hidden" name="orderBy" id="orderBy" value="0"/>
-            <li class="normal"><a  onclick="clickOrderBy(0);" title="默认排序">综合</a></li>
-            <li ><a href="${pageContext.request.contextPath}/orderBySell"><span>销量</span></a></li>
+            &lt;%&ndash;<li id="moren" ><a  onclick="clickOrderBy(0);" title="默认排序">综合</a></li>&ndash;%&gt;
+            &lt;%&ndash;href="${pageContext.request.contextPath}/orderBySell"class="normal"&ndash;%&gt;
+            <li id="xiaoliang" ><a  onclick="orderbySell()" ><span >销量</span></a></li>
             <li class="defaultPrice"><a href="${pageContext.request.contextPath}/orderByPrice" > <span>价格</span></a></li>
             <li ><a onclick="clickOrderBy(2);"><span>上架时间</span></a></li>
         </ul>
@@ -308,8 +315,15 @@
             <a style="text-decoration: none;" onclick="cleanPrice()" ><input type="button" value="清除" style="border:1px solid #dfdfdf; padding:0 5px; line-height:21px; background:#dddddd;"></a>
             </span>
     </div>
-</div>
+</div>--%>
 </form>
+<script>
+    function orderbySell() {
+
+        location.href="${pageContext.request.contextPath}/orderBySell"
+
+    }
+</script>
 
 
 
@@ -317,12 +331,7 @@
     <div id="JS_list_panel" class="list-panel">
         <div class="list-wrap">
             <ul class="list-goods clearfix" style="width:1220px;">
-
-                <c:forEach items="${findBook }" var="bok">
-                    <c:if test="${findBook==null}">
-                        <h3>duibuqi</h3>
-                    </c:if>
-                    <c:if test="${findBook!=null }">
+                <c:forEach items="${pageInfo.list}" var="bok">
                 <li class="g-item">
                     <div class="g-dtl">
                         <a href="${pageContext.request.contextPath}/proInfo?bid=${bok.bid}" target="_blank"  >
@@ -345,24 +354,105 @@
                         </a>
                     </div>
                 </li>
-                    </c:if>
-
                 </c:forEach>
-
-
             </ul>
 
         </div>
     </div>
-    <div class="scott">
-        &nbsp;<a class="disabled">上一页</a>
-        <span class="current">1</span>
-        ...
-        <a id="page_1" href="index_1.htm">1</a>
-        &nbsp;&nbsp;&nbsp;到第&nbsp;&nbsp;<input type="text" id="_goPs" class="ssinput" style="width:64px; border:#c3c3c3 1px
 
-solid;" /> 页  <button  onclick="_gotoPage($('#_goPs').val(),'index','.htm');"  disabled="disabled" class="menu_queding">确定</button>
+    <c:if test="${findCategory==null }">
+
+        <!-- 分页数据 -->
+        <div class="row">
+
+            <!-- 分页文字信息 -->
+            <div class="col-md-6">
+                    <%-- 当前${pageInfo.pageNum}页,总${pageInfo.pages}页,总${pageInfo.total }条记录--%>
+            </div>
+            <!-- 分页条信息 -->
+            <div class="col-md-6" >
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li><a href="${APP_PATH }/shop/listCat?pn=1&cid=${twoCategoryForPage.cid}">首页</a></li>
+                        <c:if test="${pageInfo.hasPreviousPage }">
+                            <li>
+                                <a href="${APP_PATH }/shop/listCat?pn=${pageInfo.pageNum-1}&cid=${twoCategoryForPage.cid}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <c:forEach items="${pageInfo.navigatepageNums }" var="page_Num">
+                            <c:if test="${page_Num==pageInfo.pageNum }">
+                                <li class="active"><a href="#">${page_Num }</a></li>
+                            </c:if>
+                            <c:if test="${page_Num!=pageInfo.pageNum }">
+                                <li><a href="${APP_PATH }/shop/listCat?pn=${page_Num }&cid=${twoCategoryForPage.cid}">${page_Num }</a></li>
+                            </c:if>
+                        </c:forEach>
+                        <c:if test="${pageInfo.hasNextPage }">
+                            <li>
+                                <a href="${APP_PATH }/shop/listCat?pn=${pageInfo.pageNum+1}&cid=${twoCategoryForPage.cid}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <li><a href="${APP_PATH}/shop/listCat?pn=${pageInfo.pages}&cid=${twoCategoryForPage.cid}">末页</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </c:if>
+
+    <c:if test="${findCategory!=null }">
+    <!-- 分页数据 -->
+    <div class="row">
+
+        <!-- 分页文字信息 -->
+       <div class="col-md-6">
+           <%-- 当前${pageInfo.pageNum}页,总${pageInfo.pages}页,总${pageInfo.total }条记录--%>
+        </div>
+        <!-- 分页条信息 -->
+        <div class="col-md-6" >
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li><a href="${APP_PATH }/shop/cat?pn=1&pid=${oneCategoryForPage.pid}">首页</a></li>
+                    <c:if test="${pageInfo.hasPreviousPage }">
+                        <li>
+                            <a href="${APP_PATH }/shop/cat?pn=${pageInfo.pageNum-1}&pid=${oneCategoryForPage.pid}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+
+                    <c:forEach items="${pageInfo.navigatepageNums }" var="page_Num">
+                        <c:if test="${page_Num==pageInfo.pageNum }">
+                            <li class="active"><a href="#">${page_Num }</a></li>
+                        </c:if>
+                        <c:if test="${page_Num!=pageInfo.pageNum }">
+                            <li><a href="${APP_PATH }/shop/cat?pn=${page_Num }&pid=${oneCategoryForPage.pid}">${page_Num }</a></li>
+                        </c:if>
+                    </c:forEach>
+                    <c:if test="${pageInfo.hasNextPage }">
+                        <li>
+                            <a href="${APP_PATH }/shop/cat?pn=${pageInfo.pageNum+1}&pid=${oneCategoryForPage.pid}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+
+                    <li><a href="${APP_PATH}/shop/cat?pn=${pageInfo.pages}&pid=${oneCategoryForPage.pid} ">末页</a></li>
+                </ul>
+            </nav>
+        </div>
+
     </div>
+    </c:if>
+
+    </div>
+
     <script type="text/javascript">
         function _gotoPage(pageNo,urlp,urls) {
             try{

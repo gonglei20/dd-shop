@@ -1261,7 +1261,7 @@
 
                     <td>
                         <input class="btn-reduce-active" type="button" onclick="decrement('',2185,'items_55_0');" />
-                        <input id="items_55_0" name="itemNumBox" type="text" value="2" class="num"
+                        <input id="items_55_0" name="itemNumBox" type="text" value="1" class="num"
                                oriNum="95" onblur="calSubTotal('',2185,'items_55_0');"/>
                         <input class="btn-plus" type="button" onclick="increment('',2185,'items_55_0');" />
 

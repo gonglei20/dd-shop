@@ -14,6 +14,13 @@
         SELECT DISTINCT(cat.pname) FROM t_category cat WHERE pid=#{pid}
     </select>
 
+    <select id="findOneCategoryForPage" parameterType="com.qf.shop.portal.pojo.Book" resultType="com.qf.shop.portal.pojo.Category">
+        SELECT DISTINCT(cat.pid) FROM t_category cat WHERE pid=#{pid}
+    </select>
+    <select id="findTneCategoryForPage" parameterType="com.qf.shop.portal.pojo.Book" resultType="com.qf.shop.portal.pojo.Category">
+        SELECT DISTINCT(cat.cid) FROM t_category cat WHERE cid=#{cid}
+    </select>
+
     <!--查询二级类目下的图书-->
     <select id="findBookByCid" parameterType="com.qf.shop.portal.pojo.Book" resultType="com.qf.shop.portal.pojo.Book">
         SELECT * FROM t_book  WHERE cid=#{cid}
@@ -36,7 +43,7 @@
 
     <!--按照价格排序-->
     <select id="findBookOrderByPrice"  resultType="com.qf.shop.portal.pojo.Book">
-        SELECT * FROM t_book  order by totalsell DESC
+        SELECT * FROM t_book  order by price DESC
     </select>
 
     <!--商品搜索-->

@@ -30,6 +30,16 @@ public class BookService implements IBookService {
         return bookMapper.findOneCategory(book);
     }
 
+    @Override
+    public Category findOneCategoryForPage(Book book) {
+        return bookMapper.findOneCategoryForPage(book);
+    }
+
+    @Override
+    public Category findTneCategoryForPage(Book book) {
+        return bookMapper.findTneCategoryForPage(book);
+    }
+
     //查询二级类目下的图书
     @Override
     public List<Book> findBookByCid(Book book) {

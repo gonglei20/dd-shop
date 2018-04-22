@@ -15,7 +15,11 @@
     <link href="${pageContext.request.contextPath}/css/index_5.css" type="text/css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/member_2.css" type="text/css" rel="stylesheet" />
     <script src="${pageContext.request.contextPath}/js/jquery_3.js" type="text/javascript"></script>
-    <script type="text/javascript">
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/messages_zh.js"></script>
+  <%--  <script type="text/javascript">
         $(function() {
             $("#jvForm").validate();
         });
@@ -29,6 +33,75 @@
                 alert("注册成功");*/
 
         }
+    </script>--%>
+    <script type="text/javascript">
+
+        //表单校验
+        $(function() {
+            $("#registForm").validate({
+                rules:{
+                      username:{
+                        required:true,
+                        minlength:3
+                    },
+                    password:{
+                        required:true,
+                        digits:true,
+                        minlength:6
+                    },
+                    repassword:{
+                        required:true,
+                        equalTo:"[name='password']"
+                    },
+                    email:{
+                        required:true,
+                        email:true
+                    },
+                    xieyi:{
+                        required:true
+                    }
+                },
+                messages:{
+                    username:{
+                        required:"用户名不能为空!",
+                        minlength:"用户名不得少于3位!"
+                    },
+                    password:{
+                        required:"密码不能为空!",
+                        digits:"密码必须是整数!",
+                        minlength:"密码不得少于6位!"
+                    },
+                    repassword:{
+                        required:"确认密码不能为空!",
+                        equalTo:"两次输入密码不一致!"
+                    },
+                    email:{
+                        required:"邮箱不能为空!",
+                        email:"邮箱格式不正确!"
+                    },
+                    xieyi:{
+                        required:"请阅读协议后注册"
+                    }
+                }
+               /* submitHandler : function() {
+                    //提交Ajax
+                    $.ajax({
+                        data : $("#registForm").serialize(),
+                        dataType : "text",
+                        type : "post",
+                        url : "${pageContext.request.contextPath}/register",
+                        success : function(rec) {
+                            if(rec=="0"){
+                                $("#mess").html("用户名或密码错误");
+                            }else{
+                                location.href = "${pageContext.request.contextPath}/user/toindex.do"
+                            }
+                        }
+                    });
+                }*/
+            });
+        })
+
     </script>
 </head>
 
@@ -73,48 +146,50 @@
     <div class="clearfix w">
         <div class="content-one content-hei">
             <div class="user_title">注册新用户<span class="fr" style="font-size:12px;">已有帐号，<a href="${pageContext.request.contextPath}/login" style="color:#F00; font-size:14px;">登录</a></span></div>
-            <form id="jvForm" action="register.jspx" method="post">
+            <form id="registForm" action="${pageContext.request.contextPath}/checkRegister"  method="post">
                 <table border="0" align="center" cellpadding="3" cellspacing="0" class="zhuce">
                     <tr>
                         <td height="45" width="200" align="right">用户名：</td>
                         <td>
-                            <input type="text" id="username" name="username" class="register_input w200 fl mr20" vld="{required:true,rangelength:[3,20],remote:'/username_unique.jspx',messages:{remote:'用户名已存在'}}"/>
+                            <input type="text" id="username" name="username" class="register_input w200 fl mr20"/>
                         </td>
                         <td>
-                            <span class="gray">用户名由3到20位的中文字符、英文字母、数字组成。</span>
+                            <span class="gray">用户名最少由3位组成。</span>
                         </td>
                     </tr>
                     <tr>
                         <td height="45" width="" align="right">Email：</td>
-                        <td><input type="text" name="email" id="email"  class="register_input w200 fl mr20" vld="{required:true,email:true,remote:'/email_unique.jspx',messages:{remote:'email已经被使用'}}"/></td>
+                        <td><input type="text" name="email" id="email"  class="register_input w200 fl mr20"/></td>
                         <td><span class="gray">输入有效邮箱地址</span></td>
                     </tr>
                     <tr>
                         <td height="45" width="200" align="right">密码：</td>
-                        <td><input name="password" type="password" class="register_input w200 fl mr20" id="password" vld="{required:true,rangelength:[6,32]}" /></td>
+                        <td><input name="password" type="password" class="register_input w200 fl mr20" id="password"/></td>
                         <td><span class="gray">6－20位字符</span></td>
                     </tr>
                     <tr>
                         <td height="45" width="200" align="right">确认密码：</td>
-                        <td><input type="password" equalTo="#password" class="register_input w200 fl mr20"  vld="{required:true}"/></td>
+                        <td>
+                            <input type="password"id="repassword" name="repassword" class="register_input w200 fl mr20" /></td>
                         <td><span class="gray">再次输入相同密码</span></td>
                     </tr>
-                    <tr>
+                   <%-- <tr>
                         <td height="45" width="200" align="right">验证码：</td>
                         <td colspan="2"><input type="text" name="checkcode"  class="register_input w200 fl mr20" vld="{required:true}"/>
                             <img src="picture/checkcode.svl" height="40" class="fl" id="checkcode" onclick="$('#checkcode').attr('src','/checkcode.svl?d'+new Date()*1);"/>
                             <a href="javascript:void(0);" style="line-height:30px;" onclick="$('#checkcode').attr('src','/checkcode.svl?d'+new Date()*1);return false">看不清，换一张 </a>
                         </td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                         <td height="45" width="200" align="right">&nbsp;</td>
                         <td colspan="2">
-                            <input type="checkbox" id="contract" name="contract" checked="checked"/>
+                            <input type="checkbox" id="xieyi" name="xieyi" checked="checked"/>
                             <a href="javascript:void(0);" onclick="window.open('treaty.jspx','','height=600,width=600,scrollbars=1');" class="xieyi">已阅读并接受《 叮当网上书城 》</a></td>
                     </tr>
                     <tr>
                         <td height="50" width="200" align="right">&nbsp;</td>
-                        <td colspan="2"><input type="button" onclick="onSubmit();" value="注册" class="ss_button w200"/>
+                        <td colspan="2">
+                            <input type="submit" value="注册" class="ss_button w200"/>
                         </td>
                     </tr>
                 </table>
@@ -169,36 +244,36 @@
             </li>
             <li class="Sitemap-item fl">
                 <h4>
-                    <a target="_blank" href="/wzgg/index.htm">网站公告</a>
+                    <a target="_blank" href="/">网站公告</a>
                 </h4>
                 <ul>
-                    <li><a href="/wzgg/5.htm" class="track2" target="_blank">最新商品</a></li>
+                    <li><a href="/" class="track2" target="_blank">最新商品</a></li>
                 </ul>
             </li>
             <li class="Sitemap-item fl">
                 <h4>
-                    <a target="_blank" href="/news/index.htm">新闻中心</a>
+                    <a target="_blank" href="/">新闻中心</a>
                 </h4>
                 <ul>
-                    <li><a href="/news/6.htm" class="track2" target="_blank">jspgou v5.0即将发布</a></li>
+                    <li><a href="/" class="track2" target="_blank">jspgou v5.0即将发布</a></li>
                 </ul>
             </li>
             <li class="Sitemap-item fl">
                 <h4>
-                    <a target="_blank" href="/remen/index.htm">热门促销</a>
+                    <a target="_blank" href="/">热门促销</a>
                 </h4>
                 <ul>
-                    <li><a href="/remen/7.htm" class="track2" target="_blank">热门促销</a></li>
+                    <li><a href="/" class="track2" target="_blank">热门促销</a></li>
                 </ul>
             </li>
             <li class="Sitemap-item fl">
                 <h4>
-                    <a target="_blank" href="/ps/index.htm">配送范围及时间</a>
+                    <a target="_blank" href="/">配送范围及时间</a>
                 </h4>
                 <ul>
-                    <li><a href="/ps/8.htm" class="track2" target="_blank">订单拆分</a></li>
-                    <li><a href="/ps/9.htm" class="track2" target="_blank">海外配送</a></li>
-                    <li><a href="/ps/10.htm" class="track2" target="_blank">国内配送</a></li>
+                    <li><a href="/" class="track2" target="_blank">订单拆分</a></li>
+                    <li><a href="/" class="track2" target="_blank">海外配送</a></li>
+                    <li><a href="/" class="track2" target="_blank">国内配送</a></li>
                 </ul>
             </li>
         </ul>
@@ -210,12 +285,12 @@
 
     <div class="Copyright">
         <div class="ctr tac">
-            <a href="/dilan/20.htm"target="_blank">关于JSPGOU</a> |
-            <a href="/dilan/21.htm"target="_blank">最新资讯</a> |
-            <a href="/dilan/22.htm"target="_blank">帮助中心</a> |
-            <a href="/dilan/23.htm"target="_blank">隐私保护</a> |
-            <a href="/dilan/24.htm"target="_blank">网站导航</a> |
-            <a href="/dilan/25.htm"target="_blank">联系我们</a>
+            <a href="/"target="_blank">关于JSPGOU</a> |
+            <a href="/"target="_blank">最新资讯</a> |
+            <a href="/"target="_blank">帮助中心</a> |
+            <a href="/"target="_blank">隐私保护</a> |
+            <a href="/"target="_blank">网站导航</a> |
+            <a href="/"target="_blank">联系我们</a>
         </div>
         <div class="ctr tac">Copyright © JSPGOU 2017，All Rights Reserved</div>
     </div>

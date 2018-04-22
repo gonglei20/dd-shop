@@ -47,15 +47,14 @@ public class UserAction {
     }
 
     //用户注册
-    @RequestMapping(value = "/toRegister")
+    @RequestMapping(value = "/checkRegister")
     public String toRegister(User user, HttpSession session){
-        User findUser = userService.findUserByNameAndPass(user);
-        if(findUser!=null){
-            System.out.println("succ");
-        }else{
-            System.out.println("fail");
-        }
-        return "index";
+       int i = userService.saveUser(user);
+       if (i!=0){
+           return "login";
+       }else{
+           return "register";
+       }
     }
 
     //个人中心
@@ -67,4 +66,11 @@ public class UserAction {
                return "login";
            }
     }
+    //提交个人信息
+    @RequestMapping(value = "/personInfo")
+    public String personInfo(User user,HttpSession session){
+       userService.updateUser(user);
+       return "myCenter";
+    }
+
 }

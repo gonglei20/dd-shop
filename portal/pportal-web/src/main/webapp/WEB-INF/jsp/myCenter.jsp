@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>会员信息修改页 - jeegou开发站- Powered by JSPGOU</title>
+    <title>会员信息修改页</title>
     <link href="css/index_2.css" type="text/css" rel="stylesheet" />
     <link href="css/member_1.css" type="text/css" rel="stylesheet" />
     <script src="js/jquery_2.js" type="text/javascript"></script>
@@ -104,6 +104,12 @@
         }
         function checkJvForm2(){
             $("#jvForm2").submit();
+        }
+        function logout() {
+            var result = confirm("确认注销？");
+            if(result){
+                location.href ="${pageContext.request.contextPath}/logout";
+            }
         }
 
     </script>
@@ -544,37 +550,37 @@
             }
         </script>
 
-        <div class="user_menu">
-            <div class="navs" id="JS_u_navs">
-                <div id="ss1" onclick="displayed(1);"><h3><span class="s1"></span>订单中心</h3></div>
-                <ul id="ul1">
-                    <li class="current" id="tbg_11" onclick="HoverLiGuide(1,1,13);"><a href="/order/myorder.jspx">我的订单</a></li>
+            <%--<div class="user_menu">
+                <div class="navs" id="JS_u_navs">
+                    <div id="ss1" onclick="displayed(1);"><h3><span class="s1"></span>订单中心</h3></div>
+                    <ul id="ul1">
+                        <li class="current" id="tbg_11" onclick="HoverLiGuide(1,1,13);"><a href="/order/myorder.jspx">我的订单</a></li>
 
-                    <li class="sep" id="tbg_13" onclick="HoverLiGuide(1,3,13);"><a href="/order/myReturnOrder.jspx">退货订单</a></li>
-                    <li class="sep" id="tbg_14" onclick="HoverLiGuide(1,4,13);"><a href="/collect/mycollect.jspx">我的收藏</a></li>
-                    <li  id="tbg_144" onclick="HoverLiGuide(1,44,13);">
-                        <a href="/member/message_mng.jspx?cl=tbg_144">站内信息</a>
-                    </li>
-                    <li class="sep" id="tbg_15" onclick="HoverLiGuide(1,5,13);"><a href="/myCoupon.jspx">我的优惠卷</a></li>
-                </ul>
+                        <li class="sep" id="tbg_13" onclick="HoverLiGuide(1,3,13);"><a href="/order/myReturnOrder.jspx">退货订单</a></li>
+                        <li class="sep" id="tbg_14" onclick="HoverLiGuide(1,4,13);"><a href="/collect/mycollect.jspx">我的收藏</a></li>
+                        <li  id="tbg_144" onclick="HoverLiGuide(1,44,13);">
+                            <a href="/member/message_mng.jspx?cl=tbg_144">站内信息</a>
+                        </li>
+                        <li class="sep" id="tbg_15" onclick="HoverLiGuide(1,5,13);"><a href="/myCoupon.jspx">我的优惠卷</a></li>
+                    </ul>
 
-                <div id="ss2" onclick="displayed(2);"><h4><span class="s2"></span>账户管理</h4></div>
-                <ul id="ul2">
-                    <li class="sep" id="tbg_16" onclick="HoverLiGuide(1,6,13);"><a href="/shopScore/myscore.jspx">我的积分</a></li>
-                    <li class="sep" id="tbg_17" onclick="HoverLiGuide(1,7,13);"><a href="/shopScore/exchange.jspx">积分兑换</a></li>
-                    <li class="sep" id="tbg_18" onclick="HoverLiGuide(1,8,13);"><a href="/shopMoney/mymoney.jspx">账户余额</a></li>
-                    <li class="sep" id="tbg_19" onclick="HoverLiGuide(1,9,13);"><a href="/shopMemberAddress/address_list.jspx">收货地址</a></li>
-                    <li class="sep" id="tbg_110" onclick="HoverLiGuide(1,10,13);"><a href="/shopMember/profile.jspx">个人资料</a></li>
-                    <li class="sep" id="tbg_111" onclick="HoverLiGuide(1,11,13);"><a href="/shopMember/pwd.jspx">密码管理</a></li>
-                </ul>
+                    <div id="ss2" onclick="displayed(2);"><h4><span class="s2"></span>账户管理</h4></div>
+                    <ul id="ul2">
+                        <li class="sep" id="tbg_16" onclick="HoverLiGuide(1,6,13);"><a href="/shopScore/myscore.jspx">我的积分</a></li>
+                        <li class="sep" id="tbg_17" onclick="HoverLiGuide(1,7,13);"><a href="/shopScore/exchange.jspx">积分兑换</a></li>
+                        <li class="sep" id="tbg_18" onclick="HoverLiGuide(1,8,13);"><a href="/shopMoney/mymoney.jspx">账户余额</a></li>
+                        <li class="sep" id="tbg_19" onclick="HoverLiGuide(1,9,13);"><a href="/shopMemberAddress/address_list.jspx">收货地址</a></li>
+                        <li class="sep" id="tbg_110" onclick="HoverLiGuide(1,10,13);"><a href="/shopMember/profile.jspx">个人资料</a></li>
+                        <li class="sep" id="tbg_111" onclick="HoverLiGuide(1,11,13);"><a href="/shopMember/pwd.jspx">密码管理</a></li>
+                    </ul>
 
-                <div id="ss3" onclick="displayed(3);"><h5><span class="s3"></span>服务与评价</h5></div>
-                <ul id="ul3">
-                    <li class="sep" id="tbg_112" onclick="HoverLiGuide(1,11,12);"><a href="/my_discuss.jspx">商品评论</a></li>
-                    <li class="sep" id="tbg_113" onclick="HoverLiGuide(1,12,12);"><a href="/my_cousult.jspx">购买咨询</a></li>
-                </ul>
-            </div>
-        </div>
+                    <div id="ss3" onclick="displayed(3);"><h5><span class="s3"></span>服务与评价</h5></div>
+                    <ul id="ul3">
+                        <li class="sep" id="tbg_112" onclick="HoverLiGuide(1,11,12);"><a href="/my_discuss.jspx">商品评论</a></li>
+                        <li class="sep" id="tbg_113" onclick="HoverLiGuide(1,12,12);"><a href="/my_cousult.jspx">购买咨询</a></li>
+                    </ul>
+                </div>
+            </div>--%>
         <script type="text/javascript">
             function checkClass(o){
                 o.className="current1";
@@ -590,7 +596,7 @@
                 <div class="user_photo fl">
                     <div class="photo_img">
                         <a href="/shopMember/portrait.jspx">
-                            <img src="picture/12114302oqni.jpg" width="90" height="90" />
+                            <img src="picture/06170735f214_2.jpg" width="90" height="90" />
                         </a>
                     </div>
                 </div>
@@ -612,64 +618,67 @@
             <div class="ysppm">
                 <ul>
                     <li class="curr" id="tb_11" onclick="HoverLi(1,1,3);">个人信息</li>
-                   <%-- <li class="normaltab" id="tb_12" onclick="HoverLi(1,2,3);">更多个人信息</li>
-                    <li class="normaltab" id="tb_13" onclick="HoverLi(1,3,3);">兴趣爱好</li>--%>
                 </ul>
             </div>
             <div class="mc_content">
                 <div id="tbc_11" class="dis">
-                    <form id="jvForm" action="/shopMember/profile.jspx" method="post">
 
+                    <form id="jvForm" action="${pageContext.request.contextPath}/personInfo" method="post">
                         <table width="98%" border="0" align="center" cellpadding="3" cellspacing="0">
                             <tr>
                                 <td width="150" height="40" align="right">用户名：</td>
-                                <td>${user.username}</td>
+                                <td>
+                                    <input id="username" name="username" value="${user.username}" disabled="disabled"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td height="40" align="right">
                                     <font color="red">*</font>邮箱 ：</td>
-                                <td>&nbsp;<input type="text" id="email" name="email" value="${user.email}" class="ss_input required email" /></td>
+                                <td>&nbsp;<input type="text" id="email" name="email" class="ss_input required email" /></td>
                             </tr>
                             <tr>
                                 <td height="40" align="right">
                                     <font color="red">*</font>真实姓名：</td>
-                                <td>&nbsp;<input type="text" id="realName" name="realName" value="${user.realName}" class="ss_input required" /></td>
+                                <td>&nbsp;<input type="text" id="realName" name="realName"  class="ss_input required" /></td>
                             </tr>
                             <tr>
                                 <td height="40" align="right">
                                     <font color="red">*</font>手机：</td>
-                                <td>&nbsp;<input type="text" id="mobile" name="mobile" value="${user.mobile}" class="ss_input required digits"/>
+                                <td>&nbsp;<input type="text" id="mobile" name="mobile"  class="ss_input required digits"/>
                                     <font color="red"> <span id="checkmobile"></span></font>
                                 </td>
                             </tr>
-                            <tr>
+                          <%--  <tr>
                                 <td height="40" align="right">
                                     <font color="red">*</font>性别：</td>
                                 <td>
                                     <c:if test="${user.gender.equals('男')}">
                                     &nbsp;&nbsp;<input type="radio" name="gender" value="男" checked />男&nbsp;&nbsp;
+                                        &nbsp;&nbsp;<input type="radio" name="gender" value="女"  />女&nbsp;&nbsp;
                                     </c:if>
                                     <c:if test="${user.gender.equals('女')}">
+                                        &nbsp;&nbsp;<input type="radio" name="gender" value="男" />男&nbsp;&nbsp;
                                         &nbsp;&nbsp;<input type="radio" name="gender" value="女" checked />女&nbsp;&nbsp;
                                     </c:if>
-                                    <%--<input type="radio" name="gender" value="false"  checked  />女--%>
+                                    &lt;%&ndash;<input type="radio" name="gender" value="false"  checked  />女&ndash;%&gt;
                                 </td>
-                            </tr>
-                            <tr>
+                            </tr>--%>
+                          <%--  <tr>
                                 <td height="40" align="right">
                                     <font color="red">*</font>生日：</td>
-                                <td>&nbsp;<input type="text" name="birthday" value="${user.birthday}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="time_input required" style="width:100px;"/></td>
-                            </tr>
+                                <td>&nbsp;<input type="text" name="birthday"   class="time_input " style="width:100px;"/></td>
+                            </tr>--%>
                             <tr>
                                 <td height="40" align="right"> 您的地址：</td>
-                                <td>&nbsp;<input type="text" id="address" name="address" value="${user.address}" class="ss_input" style="width:600px;" /></td>
+                                <td>&nbsp;<input type="text" id="address" name="address" class="ss_input" style="width:600px;" /></td>
                             </tr>
 
                             <tr>
                                 <td height="50">&nbsp;</td>
                                 <td>
                                     <input type="hidden" name="id" value="9"/>
-                                    <input type="button" value="提交" onclick="checkJvForm();" class="ss_button"/>
+                                    <%--<input type="button" value="提交" onclick="checkJvForm();" class="ss_button"/>--%>
+                                    <input type="submit" value="提交"  class="ss_button"/>
                                     &nbsp; <input type="reset" value="重置" class="no_button"/>
                                     <input type="hidden" name="backUrl" value="http://demo3.jeecms.com/shopMember/profile.jspx"/></td>
                             </tr>

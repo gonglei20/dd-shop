@@ -12,6 +12,10 @@ public interface BookMapper {
     List<Category> findCategory(Book book);
     Category findOneCategory(Book book);
 
+    Category findOneCategoryForPage(Book book);
+
+    Category  findTneCategoryForPage(Book book);
+
     //查询二级类目下的图书
     List<Book> findBookByCid(Book book);
 

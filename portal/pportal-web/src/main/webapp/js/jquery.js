@@ -101,7 +101,7 @@ HistoryRecord.record = function(){
 	return count ;
 }
 
-$.extend($.validator.messages, {
+/*$.extend($.validator.messages, {
 	required : "该项为必填项",
 	remote : "请修正该字段",
 	email : "请输入正确格式的电子邮件",
@@ -121,7 +121,7 @@ $.extend($.validator.messages, {
 	min : $.format("该项不能小于 {0}"),
 	username : "只能输入字符、数字、中文、和 _ - @ 的组合",
 	path : "只能输入字符和数字的组合"
-});
+});*/
 Cms={}
 Cms.loginSSO=function(base){
 	var username=$.cookie('username');

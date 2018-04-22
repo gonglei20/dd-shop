@@ -163,6 +163,10 @@
                 }
             }
         </script>
+        <div class="top_shopping">
+            <i></i>
+            <a href="${pageContext.request.contextPath}/proCar">我的购物车 </a>
+        </div>
     </div>
 </div>
 <!-- 搜索栏end -->

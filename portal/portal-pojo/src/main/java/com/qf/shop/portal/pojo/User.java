@@ -3,7 +3,7 @@ package com.qf.shop.portal.pojo;
 import java.util.Date;
 
 public class User {
-    private String uid;
+    private Integer uid;
     private String username;
     private String password;
     private String email;
@@ -55,11 +55,11 @@ public class User {
         this.address = address;
     }
 
-    public String getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
