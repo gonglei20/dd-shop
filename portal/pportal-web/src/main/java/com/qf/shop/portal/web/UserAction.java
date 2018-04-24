@@ -30,11 +30,11 @@ public class UserAction {
     public String checkLogin(User user, HttpSession session, HttpServletResponse response) throws IOException {
         User findUser = userService.findUserByNameAndPass(user);
         if(findUser!=null){
-            System.out.println("succ");
+            //System.out.println("succ");
             session.setAttribute("user",findUser);
             return "1";
         }else{
-            System.out.println("fail");
+            //System.out.println("fail");
             return "0";
         }
     }

@@ -40,7 +40,22 @@
 
     <!--查询所有用户-->
     <select id="findAllUser" resultType="com.qf.shop.pojo.User"  >
-        SELECT * FROM t_user;
+        SELECT * FROM t_user
     </select>
+
+    <!--查询单个用户 -->
+    <select id="editUser" parameterType="com.qf.shop.pojo.User" resultType="com.qf.shop.pojo.User"  >
+        SELECT * FROM t_user where uid=#{uid}
+    </select>
+
+    <!--删除单个用户-->
+    <delete id="deleteUser" parameterType="com.qf.shop.pojo.User">
+        DELETE FROM t_user WHERE uid=#{uid}
+    </delete>
+
+    <update id="saveOneUser" parameterType="com.qf.shop.pojo.User">
+        UPDATE t_user SET email=#{email},status=#{status},mobile=#{mobile},gender=#{gender},address=#{address} WHERE uid=#{uid}
+    </update>
+
 
 </mapper>

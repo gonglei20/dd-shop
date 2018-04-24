@@ -33,10 +33,16 @@
     <div class="bloc">
         <div class="title"> 操作 <a class="toggle"></a></div>
         <div class="content dashboard">
+            <select>
+                <option >1</option>
+                <option >1</option>
+
+            </select>
             <div class="center" style="display: block; width: auto;">
-                <a href="${pageContext.request.contextPath}/editProduct" class="shortcut zoombox w500 h300">
-                    <img src="${pageContext.request.contextPath}/images/glyph-add.png" alt="" width="48" height="48"> 添加分类 </a>
+                <a href="${pageContext.request.contextPath}/findCategory" class="shortcut zoombox w500 h300">
+                    <img src="${pageContext.request.contextPath}/images/glyph-add.png" alt="" width="48" height="48"> 查询 </a>
                 <div class="cb"></div>
+            </div>
             </div>
         </div>
     </div>

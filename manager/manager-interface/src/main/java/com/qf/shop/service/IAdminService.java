@@ -24,4 +24,11 @@ public interface IAdminService {
     Category editCategoryByCid(Integer cid);
     //用户管理
     List<User> findAllUser();
+    //用户编辑
+    User editUser(User user);
+    //删除单个用户
+    void deleteUser(User user);
+
+    //保存编辑
+    void saveOneUser(User user);
 }

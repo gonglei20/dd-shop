@@ -55,4 +55,20 @@ public class AdminServiceImpl implements IAdminService {
     public List<User> findAllUser() {
         return adminMapper.findAllUser();
     }
+
+    //用户编辑
+    @Override
+    public User editUser(User user) {
+        return adminMapper.editUser(user);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        adminMapper.deleteUser(user);
+    }
+
+    @Override
+    public void saveOneUser(User user) {
+        adminMapper.saveOneUser(user);
+    }
 }

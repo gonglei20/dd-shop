@@ -30,8 +30,8 @@
             <p>后台管理系统</p>
         </div>
         <form id="userForm">
-            <input name="adminName" type="text"  value="用户名" >
-            <input name="adminPWD" type="password" id="adminPWD"  />
+            <input name="adminName" type="text" placeholder="用户名" >
+            <input name="adminPWD" type="password" id="adminPWD" placeholder="密码"  />
             <input value="登录" style="width:100%;" type="submit">
         </form>
     </div>
