@@ -32,4 +32,7 @@ public interface AdminMapper {
     void deleteUser(User user);
     //保存编辑
     void saveOneUser(User user);
+
+    //添加用户
+    void saveUser(User user);
 }

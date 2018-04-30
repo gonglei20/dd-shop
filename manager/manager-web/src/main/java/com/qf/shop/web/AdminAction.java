@@ -126,4 +126,11 @@ public class AdminAction {
         return "redirect:/user";
     }
 
+    @RequestMapping(value = "/submitAddUser")
+    public String submitAddUser(User user,HttpServletRequest request){
+
+        adminService.saveUser(user);
+
+        return "forward:/addUser";
+    }
 }

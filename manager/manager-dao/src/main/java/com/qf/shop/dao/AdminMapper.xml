@@ -56,6 +56,11 @@
     <update id="saveOneUser" parameterType="com.qf.shop.pojo.User">
         UPDATE t_user SET email=#{email},status=#{status},mobile=#{mobile},gender=#{gender},address=#{address} WHERE uid=#{uid}
     </update>
+    
+    <insert id="saveUser" parameterType="com.qf.shop.pojo.User">
+        INSERT INTO t_user(username,password,email,status,realName,mobile,gender,address)
+        VALUES (#{username},#{password},#{email},#{status},#{realName},#{mobile},#{gender},#{address})
+    </insert>
 
 
 </mapper>

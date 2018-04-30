@@ -7,6 +7,7 @@ import com.github.pagehelper.PageInfo;
 import com.qf.shop.portal.pojo.Book;
 import com.qf.shop.portal.pojo.Category;
 import com.qf.shop.portal.pojo.OrderItem;
+import com.qf.shop.portal.pojo.User;
 import com.qf.shop.portal.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -131,6 +132,19 @@ public class ProductAction {
        //request.setAttribute("findBook",result);
        return "/proIndex";
    }
+
+    //商品搜索
+    @RequestMapping(value = "/checkCar")
+    public String checkCar( HttpServletRequest request,HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if (user!=null){
+            return "checkCar";
+       }else{
+            return "login";
+        }
+
+
+    }
 
 
 }

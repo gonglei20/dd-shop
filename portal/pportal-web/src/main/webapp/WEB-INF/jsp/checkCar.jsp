@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -16,6 +17,9 @@
     <link href="${pageContext.request.contextPath}/css/checkout.css" type="text/css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/buy_1.css" type="text/css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/cart_1.css" type="text/css" rel="stylesheet" />
+    <link href="css/index.css" type="text/css" rel="stylesheet" />
+    <link href="css/buy.css" type="text/css" rel="stylesheet" />
+    <link href="css/cart.css" type="text/css" rel="stylesheet" />
     <script src="${pageContext.request.contextPath}/js/jquery_1.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/cart_sure.js"  type="text/javascript"></script>
     <script type="text/javascript">
@@ -216,20 +220,21 @@
 <div id="Topbar" class="Topbar">
     <div class="ctr cf">
         <ul class="Topbar-menu fr">
-            <li class="Topbar-menu-item ib"><a href="/order/myorder.jspx">我的JSPGOU</a></li>
+            <li class="Topbar-menu-item ib"><a href="${pageContext.request.contextPath}/myCenter">个人中心</a></li>
             <li class="Topbar-menu-item ib"><a href="/collect/mycollect.jspx">收藏夹</a></li>
             <!--<li class="Topbar-menu-item ib"><a target="_blank" href="">网站导航</a>-->
             </li>
         </ul>
         <ul class="Topbar-welcome fl" id="top_user_bar">
-            <li class="Topbar-welcome-item">Hi,<font color="red">  test1  </font>欢迎
-
-                来到JSPGOU商城</li>
-            <li class="Topbar-welcome-item"><a href="/logout.jspx?username=test1">退出登录</a></li>
+            <li class="Topbar-welcome-item">Hi,<font color="red">${user.username} </font>欢迎来到叮当书城</li>
+            <c:if test="${user.username==null}">
+                <li class="Topbar-welcome-item"><a href="${pageContext.request.contextPath}/login">登录</a></li>
+                <li class="Topbar-welcome-item"><a href="${pageContext.request.contextPath}/register">注册</a></li>
+            </c:if>
+            <c:if test="${user.username!=null}">
+                <li class="Topbar-welcome-item"><a onclick="logout()" href="javascript:void(0)">退出登录</a></li>
+            </c:if>
         </ul>
-
-
-
     </div>
 </div>
 
@@ -241,7 +246,7 @@
 <div class="Header">
     <div class="ctr pr">
         <a href="/"><div class="Logo">
-            <img src="picture/logo_1.jpg" width="158" height="58" />
+            <img src="${pageContext.request.contextPath}/picture/logo_2.jpg" width="400" height="80" />
         </div></a>
         <form class="Search"  id="searchForm" action="/search.jspx">
             <input id="search_form_input" class="Search-input zi2" type="text"
@@ -351,7 +356,7 @@
     <div id="topcolumn"></div>
     <div class="weizhi">您当前的位置：<a href="/" target="_blank">首页</a> > 确认订单信息</div>
     <ul class="step clearfix">
-        <li ><span>STEP 1.</span>查看购物车</li>
+        <li><span>STEP 1.</span>查看购物车</li>
         <li class="on"><span>STEP 2.</span>确认订单信息</li>
         <li><span>STEP 3.</span>成功提交订单</li>
     </ul>
@@ -359,76 +364,109 @@
     <div id="checkoutUI">
         <div id="errorMsgDisplayDiv" style="z-index:1000;"></div>
         <form id="jvForm" action="../order/order_shipping.jspx" method="post">
-            <div id="receiver_buffer_window" class="delivery mb10">
-                <div class="title"><h2>收货人信息</h2> </div>
+            <div style="border-bottom:1px solid #ddd; overflow:hidden; padding:10px 10px 0px 10px;">
+                <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#ddd" style="margin:auto;">
+                    <tbody><tr>
+                        <td width="30" height="30" align="center" bgcolor="#f9f9f9">&nbsp;</td>
+                        <td align="center" bgcolor="#f9f9f9">收货人</td>
+                       <%-- <td align="center" bgcolor="#f9f9f9">所在地区</td>--%>
+                        <td align="center" bgcolor="#f9f9f9">详细地址</td>
+                        <td width="100" align="center" bgcolor="#f9f9f9">邮编</td>
+                        <td width="100" align="center" bgcolor="#f9f9f9">手机</td>
+                      <%--  <td width="100" align="center" bgcolor="#f9f9f9">固定电话</td>--%>
+                        <td width="170" align="center" bgcolor="#f9f9f9">操作</td>
+                    </tr>
+                    <tr>
+                        <td height="50" align="center" bgcolor="#FFFFFF">
+                            <input type="radio" name="deliveryInfo" class="delivery_info" value="267" checked="checked" "="">
+                        </td>
+                        <td align="center" bgcolor="#FFFFFF">${user.realName}</td>
+                        <td align="center" bgcolor="#FFFFFF">${user.address}</td>
+                        <td align="center" bgcolor="#FFFFFF">310000</td>
+                        <td align="center" bgcolor="#FFFFFF">${user.mobile}</td>
+                       <%-- <td align="center" bgcolor="#FFFFFF">13222222222</td>--%>
+                        <td align="center" bgcolor="#FFFFFF">
+                            -
 
-                <div id="inputUI_rece" class="rece_box">
-                    <p id="btn_away_ui">&nbsp;</p>
-                    <div class="x_address">
-                    </div>
-                    <p class="add_adds" style="padding-top:8px; text-align:center;">
-                        <span class="tianjia" onclick="jQuery('#addrInputDiv').show();">添加新地址</span>
-                        <span class="quxiao" onclick="jQuery('#addrInputDiv').hide();">取消新地址</span>
-                    </p>
-                    <hr class="delivery_hr" />
-                    <div id="addrInputDiv" class="adress_edit2 none">
-                        <h3 class="h3">请填写收货人信息：</h3>
-                        <p class="info_form">
-                            <label for="user_name" class="lab"><em>*</em>收&nbsp;货 &nbsp;人：</label>
-                            <input type="text" id="receiverName" name="username" class="user_name text required" />
-                            <span id="nameError" class="prompt"></span>
-                        </p>
-                        <p class="info_form">
-                            <label for="user_name" class="lab"><em>*</em>性&nbsp;&nbsp;&nbsp;&nbsp;别：</label>&nbsp;
-                            <input type="radio" name="gender" value="true" checked/>男&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="gender" value="false"/>女
-                        </p>
-                        <p class="info_form">
-                            <label for="select_province" class="lab"><em>*</em>收货地址：</label>
-                            <select id="provinceId" name="provinceId" onchange="getResultCity(this.value)"  >
-                                <option value="">--请选择--</option>
-                                <option value="1">江西省</option>
-                                <option value="9">安徽省</option>
-                                <option value="10">北京市</option>
-                                <option value="11">上海市</option>
-                            </select>
-                            <span id="itemcity"></span>
-                            <span id="itemarea"></span>
-                        </p>
-                        <p class="info_form">
-                            <label for="user_adress" class="lab"><em>*</em>详细地址：</label>
-                            <input id="detailAddress" name="detailaddress" class="user_adress text required" type="text" />
-                        </p>
-                        <p class="info_form">
-                            <label for="user_adress" class="lab"><em>*</em>邮政编码：</label>
-                            <input id="postCode" name="postCode" class="user_phone text required digits" type="text" />
-                        </p>
-                        <p class="info_form">
-                            <label for="user_phone" class="lab">手机号码：</label>
-                            <input type="text" id="tel" name="tel" class="user_phone text digits"  />
-                            <span id="mobileError" class="prompt">手机或电话必填一种</span>
-                        </p>
-                        <p class="info_form">
-                            <label for="user_phone" class="lab"> 固定电话：</label>
-                            <input type="text"  id="areaCode" name="areaCode"  size="4"  maxlength="4" class="user_areaCode text digits"/>
-                            -
-                            <input type="text" id="phone" name="phone"  size="14" maxlength="10" class="user_phone text digits"/>
-                            -
-                            <input  type="text" id="extNumber" name="extNumber"  size="6"  maxlength="6" class="user_extNumber text digits"/>
-                            区号(3到4位数字，可选)-电话号码(7到8位数字)-分机号(最多6位数字，可选)
-                        </p>
-                        <p class="info_form">
-                            <input type="checkbox" onclick="$('#isDefault').val(this.checked)" style="margin-left:100px;"/>
-                            <input type="hidden" id="isDefault" name="isDefault" value="false"/>
-                            <label for="daily_address">设为默认地址</label>
-                        </p>
-                        <p class="btn" id="addrSubBtn">
-                            <input type="hidden" name="returnUrl" value="../cart/checkout_shipping.jspx"/>
-                            <input type="button" value="保存收货信息"  onclick="checkSubmit();" />
-                        </p>
-                    </div>
-                </div>
+                            -</td>
+                        <td align="center" bgcolor="#FFFFFF">
+                            <a href="../shopMemberAddress/address_delete.jspx?id=267&amp;returnUrl=../cart/checkout_shipping.jspx" class="no_button">删除</a>
+                            <a href="../shopMemberAddress/address_default.jspx?id=267&amp;returnUrl=../cart/checkout_shipping.jspx" class="no_button">设为默认</a>
+                        </td>
+                    </tr>
+                    </tbody></table>
+
             </div>
+                <%--<div id="receiver_buffer_window" class="delivery mb10">
+                    <div class="title"><h2>收货人信息</h2> </div>
+
+                     <div id="inputUI_rece" class="rece_box">
+                         <p id="btn_away_ui">&nbsp;</p>
+                         <div class="x_address">
+                         </div>
+                         &lt;%&ndash;<p class="add_adds" style="padding-top:8px; text-align:center;">
+                             <span class="tianjia" onclick="jQuery('#addrInputDiv').show();">添加新地址</span>
+                             <span class="quxiao" onclick="jQuery('#addrInputDiv').hide();">取消新地址</span>
+                         </p>&ndash;%&gt;
+                         <hr class="delivery_hr" />
+                         <div id="addrInputDiv" class="adress_edit2 none">
+                             <h3 class="h3">请填写收货人信息：</h3>
+                             <p class="info_form">
+                                 <label for="user_name" class="lab"><em>*</em>收&nbsp;货 &nbsp;人：</label>
+                                 <input type="text" id="receiverName" name="username" class="user_name text required" />
+                                 <span id="nameError" class="prompt"></span>
+                             </p>
+                             <p class="info_form">
+                                 <label for="user_name" class="lab"><em>*</em>性&nbsp;&nbsp;&nbsp;&nbsp;别：</label>&nbsp;
+                                 <input type="radio" name="gender" value="true" checked/>男&nbsp;&nbsp;&nbsp;&nbsp;
+                                 <input type="radio" name="gender" value="false"/>女
+                             </p>
+                             <p class="info_form">
+                                 <label for="select_province" class="lab"><em>*</em>收货地址：</label>
+                                 <select id="provinceId" name="provinceId" onchange="getResultCity(this.value)"  >
+                                     <option value="">--请选择--</option>
+                                     <option value="1">江西省</option>
+                                     <option value="9">安徽省</option>
+                                     <option value="10">北京市</option>
+                                     <option value="11">上海市</option>
+                                 </select>
+                                 <span id="itemcity"></span>
+                                 <span id="itemarea"></span>
+                             </p>
+                             <p class="info_form">
+                                 <label for="user_adress" class="lab"><em>*</em>详细地址：</label>
+                                 <input id="detailAddress" name="detailaddress" class="user_adress text required" type="text" />
+                             </p>
+                             <p class="info_form">
+                                 <label for="user_adress" class="lab"><em>*</em>邮政编码：</label>
+                                 <input id="postCode" name="postCode" class="user_phone text required digits" type="text" />
+                             </p>
+                             <p class="info_form">
+                                 <label for="user_phone" class="lab">手机号码：</label>
+                                 <input type="text" id="tel" name="tel" class="user_phone text digits"  />
+                                 <span id="mobileError" class="prompt">手机或电话必填一种</span>
+                             </p>
+                             <p class="info_form">
+                                 <label for="user_phone" class="lab"> 固定电话：</label>
+                                 <input type="text"  id="areaCode" name="areaCode"  size="4"  maxlength="4" class="user_areaCode text digits"/>
+                                 -
+                                 <input type="text" id="phone" name="phone"  size="14" maxlength="10" class="user_phone text digits"/>
+                                 -
+                                 <input  type="text" id="extNumber" name="extNumber"  size="6"  maxlength="6" class="user_extNumber text digits"/>
+                                 区号(3到4位数字，可选)-电话号码(7到8位数字)-分机号(最多6位数字，可选)
+                             </p>
+                             <p class="info_form">
+                                 <input type="checkbox" onclick="$('#isDefault').val(this.checked)" style="margin-left:100px;"/>
+                                 <input type="hidden" id="isDefault" name="isDefault" value="false"/>
+                                 <label for="daily_address">设为默认地址</label>
+                             </p>
+                             <p class="btn" id="addrSubBtn">
+                                 <input type="hidden" name="returnUrl" value="../cart/checkout_shipping.jspx"/>
+                                 <input type="button" value="保存收货信息"  onclick="checkSubmit();" />
+                             </p>
+                         </div>
+                     </div>
+                 </div>--%>
             <div id="payment_buffer_window" class="delivery mb10">
                 <div class="title"> <h2>支付方式</h2></div>
                 <div class="delivery_box" id="paymentMethod">
@@ -437,7 +475,7 @@
                         <label>网上支付</label>
                         <span class="des"> 支持支付宝、财付通、以及大多数网上银行支付</span>
                     </p>
-                    <p id="pNet" class="radio_select">
+                    <%--<p id="pNet" class="radio_select">
                         <input type="radio" id="paymentMethod_2" name="paymentMethodId" value="2"  />
                         <label>银行汇款</label>
                         <span class="des"> 支持工行、建行、农行汇款支付，收款时间一般为汇款后的1-2个工作日</span>
@@ -446,7 +484,7 @@
                         <input type="radio" id="paymentMethod_3" name="paymentMethodId" value="3"  />
                         <label>货到付款</label>
                         <span class="des"> 由快递公司送货上门，您签收后直接将货款交付给快递员</span>
-                    </p>
+                    </p>--%>
                 </div>
             </div>
             <div id="delivery_buffer_window" class="delivery mb10">

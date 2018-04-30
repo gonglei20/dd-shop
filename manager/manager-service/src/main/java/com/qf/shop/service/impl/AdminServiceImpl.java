@@ -62,13 +62,20 @@ public class AdminServiceImpl implements IAdminService {
         return adminMapper.editUser(user);
     }
 
+    //删除用户
     @Override
     public void deleteUser(User user) {
         adminMapper.deleteUser(user);
     }
-
+    //保存编辑
     @Override
     public void saveOneUser(User user) {
         adminMapper.saveOneUser(user);
+    }
+
+    //添加用户
+    @Override
+    public void saveUser(User user) {
+     adminMapper.saveUser(user);
     }
 }

@@ -11,4 +11,9 @@ public class PageAction {
     public String index(@PathVariable String page) {
        return page;
    }
+
+    @RequestMapping(value = "/addUser")
+    public String addUser() {
+        return "pages/"+"addUser";
+    }
 }
